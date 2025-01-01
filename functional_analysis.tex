@@ -1,0 +1,866 @@
+\input{preamble}
+\begin{document}
+\section{Topological Vector Spaces}
+\label{section-topological-vector-spaces}
+\begin{example}
+  \label{example-Lp-spaces}
+  Assume \( U \) is an open subset of \( \mathbb{R}^n \) and \( 1 \leq p \leq \infty \).
+  If \( f: U \to \mathbb{R} \) is measurable, we define
+  \[
+    \left\lVert f \right\rVert_{L^p(U)} :=
+    \begin{cases}
+      \left( \int_u \left\lvert f \right\rvert^p \right)^{1 / p} & \text{ if } 1 \leq p < \infty \\
+      \operatorname{ess} \sup_U \left\lvert f \right\rvert       & \text{ if } p = \infty.
+    \end{cases}
+  \]
+  We define \( L^p(U) \) to be the linear space of all measurable functions \( f: U \to \mathbb{R} \) for which \( \left\lVert f \right\rVert_{L^p(U)} < \infty \).
+  Then \( L^p(U) \) is a Banach space, provided we identify two functions which agree a.e.
+\end{example}
+
+\begin{example}
+  \label{example-L2-as-Hilbert-space}
+  The space \( L^2(U) \) is a Hilbert space, with
+  \[
+    (f, g) = \int_U fg \dif x.
+  \]
+\end{example}
+
+\begin{definition}
+  Let \( H \) be a Hilbert spaces.
+  \begin{enumerate}
+    \item Two elements \( u, v \in H \) are \emph{orthogonal} if \( (u, v) = 0 \).
+    \item A countable basis \( \left\lbrace w_k \right\rbrace^{\infty}_{k = 1} \subseteq H \) is called \emph{orthonormal} if
+          \[
+            \begin{cases}
+              (w_k, w_l) = 0                   & k, l = 1, \cdots; l \neq l \\
+              \left\lVert w_k \right\rVert = 1 & k = 1, \cdots.
+            \end{cases}
+          \]
+  \end{enumerate}
+\end{definition}
+Let \( H \) be a Hilbert spaces.
+If \( u \in H \) and \( \left\lbrace w_k \right\rbrace_{k = 1}^\infty \subseteq H \) is an orthonormal basis, we can write
+\[
+  u = \sum_{k = 1}^{\infty}(u, w_k)w_k,
+\]
+the series coverging in \( H \).
+In addition
+\[
+  \left\lVert u \right\rVert^2 = \sum_{k = 1}^{\infty}(u, w_k)^2.
+\]
+
+\begin{definition}
+  \label{definition-orthogonal-subspace}
+  If \( S \) is a subspace of \( H \), \( S^{\perp} := \left\lbrace u \in H: (u, v) = 0 \text{ for all } v \in S \right\rbrace \) is the subspace orthogonal to \( S \).
+\end{definition}
+
+\begin{definition}
+  \label{definition-linear-operator}
+  \label{definition-range}
+  \label{definition-null-space}
+  Let \( X \) and \( Y \) be real Banach spaces.
+  \begin{enumerate}
+    \item A mapping \( A: X \to Y \) is a \emph{linear operator} provided
+          \[
+            A [\lambda u + \mu v] = \lambda A u + \mu A v
+          \]
+          for all \( u, v \in X \), \( \lambda, \mu \in \mathbb{R} \).
+    \item The \emph{range} of \( A \) is \( \mathcal{R}(A) := \left\lbrace v \in Y: v = Au \text{ for some } u \in X \right\rbrace \) and the \emph{null space} of \( A \) is \( \mathcal{A} := \left\lbrace u \in X: Au = 0 \right\rbrace \).
+  \end{enumerate}
+\end{definition}
+
+\begin{definition}
+  \label{definition-Banach-space-linear-operator-bounded}
+  A linear operator \( A: X \to Y \) is \emph{bounded} if
+  \[
+    \left\lVert A \right\rVert := \sup \left\lbrace \left\lVert Au \right\rVert_Y: \left\lVert u \right\rVert_X \leq 1 \right\rbrace < \infty.
+  \]
+\end{definition}
+
+\begin{proposition}
+  \label{proposition-linear-operator-continuous-iff-bounded}
+  A linear operator \( A: X \to Y \) is bounded if and only if it is continuous.
+\end{proposition}
+
+\begin{theorem}[Closed Graph Theorem]
+  \label{theorem-closed-graph-theorem}
+  Let \( A: X \to Y \) be a closed, linear operator.
+  Then \( A \) is bounded.
+\end{theorem}
+
+\begin{definition}
+  \label{definition-resolvent-set}
+  Let \( A: X \to X \) be a bounded linear operator.
+  \begin{enumerate}
+    \item The \emph{resolvent set} of \( A \) is
+          \[
+            \rho(A) = \left\lbrace \eta \in \mathbb{R}: (A - \eta I) \text{ is one-to-one and onto } \right\rbrace.
+          \]
+    \item The spectrum of \( A \) is
+          \[
+            \sigma(A) = \mathbb{R} - \rho(A).
+          \]
+  \end{enumerate}
+\end{definition}
+
+If \( \eta \in \rho(A) \), \ref{theorem-closed-graph-theorem} then implies that the inverse \( (A - \eta I)^{-1}: X \to X \) is a bounded linear operator.
+
+\begin{definition}
+  \begin{enumerate}
+    \item We say \( \eta \in \sigma(A) \) is an eigenvalue of \( A \) provided
+          \[
+            N(A - \eta I) \neq \left\lbrace 0 \right\rbrace.
+          \]
+          We write \( \sigma_p(A) \) to denote the collection of eigenvalues of \( A \);
+          \( \sigma_p(A) \) is the point spectrum.
+    \item If \( \eta \) is an eigenvalue and \( w \neq 0 \) satisfies
+          \[
+            A w = \eta w,
+          \]
+          we say \( w \) is an associated eigenvector.
+  \end{enumerate}
+\end{definition}
+
+\begin{definition}
+  \label{definition-bounded-linear-functional}
+  \label{definition-dual-space}
+  \begin{enumerate}
+    \item A bounded linear operator \( u^*: X \to \mathbb{R} \) is called a \emph{bounded linear functional} on \( X \).
+    \item We write \( X^* \) to denote the collection of all bounded linear functionals on \( X \); \( X^* \) is the \emph{dual space} of \( X \).
+  \end{enumerate}
+\end{definition}
+
+\begin{definition}
+  \label{definition-pairing}
+  \label{definition-reflexive-Banach-space}
+  \begin{enumerate}
+    \item If \( u \in X, u^* \in X^* \), we write
+          \[
+            \left\langle u^*, u \right\rangle
+          \]
+          to denote the real number \( u^*(u) \).
+          The symbol \( \left\langle \cdot, \cdot \right\rangle \) denotes the pairing of \( X^* \) and \( X \).
+    \item We define
+          \[
+            \left\lVert u^* \right\rVert := \sup \left\lbrace \left\langle u^*, u \right\rangle: \left\lVert \leq 1 \right\rVert \right\rbrace
+          \]
+    \item A Banach space is \emph{reflexive} if \( (X^*)^* = X \).
+          More precisely, this means that for each \( u^{**} \in (X^*)^* \), there exists \( u \in X \) such that
+          \[
+            \left\langle u^{**}, u^* \right\rangle = \left\langle u^*, u \right\rangle \text{ for all } u^* \in X^*.
+          \]
+  \end{enumerate}
+\end{definition}
+
+\begin{theorem}[Riesz Representation Theorem]
+  \label{theorem-Riesz-representation-theorem}
+  Let \( H \) be a real Hilbert space, with inner product \( (\cdot, \cdot) \).
+  \( H^* \) can be canonically identitfied with \( H \);
+  more precisely, for each \( u^* \in H^* \) there exists a unique element \( u \in H \) such that
+  \[
+    \left\langle u^*, v \right\rangle = (u, v) \text{ for all } v \in H
+  \]
+  The mapping \( u^* \mapsto u \) is a linear isomorphism of \( H^* \) onto \( H \).
+\end{theorem}
+
+\begin{definition}
+  \label{definition-adjoint-operator}
+  \label{definition-symmetric-operator}
+  Let \( H \) be a real Hilbert space.
+  \begin{enumerate}
+    \item If \( A: H \to H \) is a bounded, linear operator, its adjoint \( A^*: H \to H \) satisfies
+          \[
+            (Au, v) = (u, A^* v)
+          \]
+          for all \( u, v \in H \).
+    \item \( A \) is symmetric if \( A^* = A \).
+  \end{enumerate}
+\end{definition}
+
+\begin{definition}
+  \label{definition-converge-weakly}
+  Let \( X \) denote a real Banach space.
+  We say a sequence \( \left\lbrace u_k \right\rbrace_{k = 1}^{\infty} \subseteq X \) converges weakly to \( u \in X \), written
+  \[
+    u_k \rightharpoonup u,
+  \]
+  if
+  \[
+    \left\langle u^*, u_k \right\rangle \to \left\langle u^*, u \right\rangle
+  \]
+  for each bounded linear functional \( u^* \in X^* \).
+\end{definition}
+
+It is easy to check if \( u_k \to u \), then \( u_k \rightharpoonup u  \).
+It is also true that any weakly convergent sequence is bounded.
+In addition, if \( u_k \rightharpoonup u \), then
+\[
+  \left\lbrace u \right\rbrace \leq \liminf_{k \to \infty} \left\lVert u_k \right\rVert.
+\]
+\begin{theorem}
+  \label{theorem-weak-compactness}
+  Let \( X \) be a reflexive Banach space and suppose the sequence \( \left\lbrace u_k \right\rbrace_{k = 1}^\infty \subseteq X \) is bounded.
+  Then there exists a subsequence \( \left\lbrace u_{k_j} \right\rbrace^{\infty}_{j = 1} \subseteq \left\lbrace u_k \right\rbrace_{k = 1}^{\infty} \) and \( u \in X \) such that
+  \[
+    u_{k_j} \rightharpoonup u.
+  \]
+\end{theorem}
+
+\begin{example}
+  \label{example-weak-convergence}
+  We will most often employ weak convergence ideas in the following context.
+  Take \( U \subseteq \mathbb{R}^n \) to be open, \( X = L^p(U) \), and assume \( 1 \leq p < \infty \), then
+  \[
+    X^* = L^q(U),
+  \]
+  where \( \frac{1}{p} + \frac{1}{q} = 1, 1 < q \leq \infty \).
+  More precisely, each bounded linear functional on \( L^p(U) \) can be represented as \( f \mapsto \int_{U} g f \dif x \) for some \( g \in L^q(U) \).
+  Therefore
+  \[
+    f_k \rightharpoonup f \text{ weakly in } L^p(U)
+  \]
+  means
+  \[
+    \int_U gf_k \dif x \to \int_U gf \dif x \text{ as } k \to \infty, \text{ for all } g \in L^q(U).
+  \]
+  Now the identification of \( L^q(U) \) as the dual of \( L^p(U) \) shows that
+  \[
+    L^p(U) \text{ is reflexive if } 1 < p \infty.
+  \]
+\end{example}
+
+\begin{definition}
+  \label{definition-compact-operator}
+  Let \( X \) and \( Y \) be real Banach spaces.
+  A bounded linear operator
+  \[
+    K: X \to Y
+  \]
+  is called \emph{compact} provided for each bounded sequence \( \left\lbrace u_k \right\rbrace_{k = 1}^{\infty} \subseteq X \), the sequence \( \left\lbrace K u_k \right\rbrace_{k = 1}^\infty \) is precompact in \( Y \);
+  that is, there exists a subsequence \( \left\lbrace u_{k_j} \right\rbrace_{j = 1}^{\infty} \) such that \( \left\lbrace K u_{k_j} \right\rbrace_{j = 1}^\infty \) converges in \( Y \).
+\end{definition}
+
+\begin{theorem}
+  Let \( H \) denote a real Hilbert space, with inner product \( (\cdot, \cdot) \).
+  If \( K: H \to H \) is compact, so is \( K^*: H \to H \).
+\end{theorem}
+
+% \begin{definition}
+%   \label{definition-supporting-hyperplane}
+%   In geometry, a \emph{supporting hyperplane} of a set \( S \) in Euclidean space \( \mathbb{R}^n \) is a hyperplane that has both of the following two properties:
+%   \begin{enumerate}
+%     \item \( S \) is entirely contained in one of the two closed half-spaces bounded by the hyperplane.
+%     \item \( S \) has at least one boundary-point on the hyperplane.
+%   \end{enumerate}
+%   Here, a closed half-space is the half-space that includes the points within the hyperplane.
+% \end{definition}
+%
+\begin{theorem}[supporting hyperplane theorem]
+  \label{theorem-supporting-hyperplane-theorem}
+  If \( S \) is a convex set in the topological vector space \( X = \mathbb{R}^n \), and \( x_0 \) is a point on the boundary of \( S \), then there exsits a supporting hyperplane containing \( x_0 \).
+  If \( x^* \in X^* \setminus 0 \), where \( X^* \) is the dual space of \( X \), \( x^* \) is a nonzero linear functional, such that \( x^*(x_0) \geq x^*(x) \) for all \( x \in S \) then
+  \[
+    H = \left\lbrace x \in X: x^*(x) = x^*(x_0) \right\rbrace
+  \]
+  defines a supporting hyperplane.
+
+  Conversely, if \( S \) is a closed set with nonempty interior such that every point on the boundary has a supporting hyperplane, then \( S \) is a convex set, and is the intersection of all its supporting closed half-spaces.
+\end{theorem}
+% \begin{proof}
+%   \href{https://en.wikipedia.org/wiki/Supporting_hyperplane}{(From Wikipedia)}
+%
+% \end{proof}
+
+%% Theorems about convex
+
+\begin{theorem}[Supporting hyperplanes]
+  \label{theorem-supporting-hyperplanes}
+  Suppose \( f: \mathbb{R}^n \to \mathbb{R} \) is convex.
+  Then for each \( x \in \mathbb{R}^n \) there exists \( r \in \mathbb{R}^n \) such that the inequality
+  \[
+    f(y) \geq f(x) + r \cdot (y - x)
+  \]
+  holds for all \( y \in \mathbb{R}^n \).
+\end{theorem}
+
+%TODO: Hahn Banach separation theorem?
+
+\begin{theorem}[Hyperplane separation theorem]
+  \label{theorem-hyperplane-separation}
+  Let \( A \) and \( B \) be two disjoint nonempty convex subsets of \( \mathbb{R}^n \).
+  Then there exist a nonzero vector \( v \) and a real number \( c \) such that
+  \[
+    \left\langle x, v \right\rangle \geq c \text{ and } \left\langle y, v \right\rangle \leq c
+  \]
+  for all \( x \) in \( A \) and \( y \) in \( B \); i.e. the hyperplane \( \left\langle \cdot, v \right\rangle = c \), \( v \) the normal vector, separates \( A \) and \( B \).
+
+  If both sets are closed, and at least one of them is compact, then the separation can be strict, that is, \( \left\langle x, v \right\rangle > c_1 \) and \( \left\langle y, v \right\rangle < c_2 \) for some \( c_1 > c_2 \).
+\end{theorem}
+\begin{proof}
+  Hahn-Banach and Riez representation theorem
+  \href{https://en.wikipedia.org/wiki/Hyperplane_separation_theorem}{Wikipedia}
+\end{proof}
+
+\subsection{Quotient Spaces}
+\label{subsection-quotient-spaces}
+
+\begin{definition}
+  \label{definition-quotient-space}
+  \label{definition-quotient-map}
+  \label{definition-quotient-topology}
+  Let \( N \) be a subspace of vector space \( X \).
+  For every \( x \in X \), let \( \pi(x) \) be the coset of \( N \) that contains \( x \);
+  thus
+  \[
+    \pi(x) = x + N.
+  \]
+  These cosets are the elements of a vector space \( X / N \), called the \emph{quotient space of \( X \) modulo \( N \)}, in which addition and scalar multiplication are defined by
+  \[
+    \pi(x) + \pi(y) = \pi(x + y),\quad \alpha \pi(x) = \pi(\alpha x).
+  \]
+  \( \pi \) is often called the \emph{quotient map of \( X \) onto \( X / N \)}.
+  \begin{enumerate}
+    \item Suppose now that \( \tau \) is a vector topology on \( X \) and that \( N \) is closed subspace of \( X \).
+    \item Let \( \tau_N \) be the collection of all sets \( E \subseteq X / N \) for which \( \pi^{-1}(E) \in \tau \).
+          Then \( \tau_N \) turns out to be a topology on \( X / N \), called the \emph{quotient topology}.
+  \end{enumerate}
+\end{definition}
+
+\begin{remark}
+  \label{remark-quotient-null-space}
+  The origin of \( X / N \) is \( \pi(0) = N \).
+  \( \pi \) is a linear mapping of \( X \) onto \( X / N \) with \( N \) as its null space.
+\end{remark}
+
+\begin{theorem}
+  Let \( N \) be a closed subspace of a topological vector space \( X \).
+  Let \( \tau \) be the topology of \( X \) and then \( \tau_N \) is a topology of \( X / N \).
+  \begin{enumerate}
+    \item The quotient map \( \pi: X \to X / N \) is linear, continuous, open.
+    \item If \( \mathcal{B} \) is a local base for \( \tau \), then the collection of all sets \( \pi(V) \) with \( V \in \mathcal{B} \) is a local base for \( \tau_N \).
+    \item Each of the following properties of \( X \) is inherited by \( X / N \):  local convexity, local boundedness, metrizability, normalbility.
+    \item If \( X \) is an \( F \)-space, or a Fre\'{e}chet space, or a Banach space, so is \( X / N \).
+  \end{enumerate}
+\end{theorem}
+\begin{proof}
+  (1) and (2) are directly checked.
+  (3) follows from (2), and in fact
+  \begin{enumerate}
+    \item the metric \( \rho \) induced by \( X \) in \( X / N \) is \( \rho(\pi(x), \pi(y)) = \inf \left\lbrace d(x - y, z): z \in N \right\rbrace \).
+    \item \( \left\lVert \pi(x) \right\rVert = \inf \left\lbrace \left\lVert x - z \right\rVert: z \in N \right\rbrace \).
+  \end{enumerate}
+  To prove (4), by (3), it suffices to show that \( \tau_N \) inherits completeness, which can also be checked directly.
+\end{proof}
+
+\section{completeness}
+\label{section-completeness}
+
+\subsection{Baire Category Theorem}
+\label{subsection-Baire-category-theorem}
+
+\subsection{Banach-Steinhaus Theorem}
+\label{subsection-Banach-Steinhaus-theorem}
+
+\begin{theorem}
+  \label{theorem-equicontinuous-implies-bounded}
+  Suppose \( X \) and \( Y \) are topological vector space, \( \Gamma \) is an equicontinuous collection of linear mappings from \( X \) into \( Y \), and \( E \) is a bounded subset of \( X \).
+  Then \( Y \) has a bounded subset \( F = \bigcup \Lambda(E) \) such that \( \Lambda(E) \subseteq F \) for every \( \Lambda \in \Gamma \).
+  In particular, \( \bigcup \Lambda(E) \) is bounded.
+\end{theorem}
+
+\begin{theorem}[Banach-Steinhaus]
+  \label{theorem-Banach-Steinhaus-theorem}
+  Suppose \( X \) and \( Y \) are topological vector spaces, \( \Gamma \) is a collection of continuous linear mappings from \( X \) into \( Y \), and \( B \) is the set of all \( x \in X \) whose orbits
+  \[
+    \Gamma(x) = \left\lbrace \Lambda x: \Lambda \in \Gamma \right\rbrace
+  \]
+  are bounded in \( Y \).
+
+  If \( B \) is of second category in \( X \), then \( B = X \) and \( \Gamma \) is equicontinuous.
+\end{theorem}
+\begin{proof}
+  Let \( W \) be a neighborhood of \( 0 \) in \( Y \), we can choose open set \( U \subseteq Y \), such that \( \overline{U} + \overline{U} \subseteq W \) and \( 0 \in U \).
+  Now we consider
+  \[
+    E = \bigcap_{\Lambda \in \Gamma}\Lambda^{-1}(\overline{U}).
+  \]
+  Suppose \( x \in B \), then there exists \( n \in \mathbb{N} \) such that \( \Gamma(x) \subseteq n U \) which implies \( x \in n E \).
+  Hence \( B \subseteq \bigcup_{n}nE \).
+  By hypothesis, \( B \) is of second category, hence one of \( n E \) is so.
+  But \( x \mapsto nx \) is a homeomorphism, it implies that \( E \) is of second category.
+  By construction, \( E \) is closed, so \( E \) has at least one interior point \( x_0 \) with its neighborhood \( V \subseteq E \).
+  Now
+  \[
+    \Lambda(V - x) \subseteq \Lambda(E) + \Lambda(E) \subseteq \overline{U} + \overline{U} \subseteq W,
+  \]
+  and noting that \( V - x \) is a neighborhood of \( 0 \), \( \Gamma \) is equicontinuous.
+  The statement \( B = X \) follows from \ref{theorem-equicontinuous-implies-bounded}.
+\end{proof}
+
+\begin{corollary}[Banach-Steinhaus]
+  \label{corollary-Banach-Steinhaus-theorem}
+  If \( \Gamma \) is a collection of continuous linear mappings from an \( F \)-space \( X \) into a topological vector space \( Y \), and if the sets
+  \[
+    \Gamma(x) = \left\lbrace \Lambda x: \Lambda \in \Gamma \right\rbrace
+  \]
+  are bounded in \( Y \), for every \( x \in X \), then \( \Gamma \) is equicontinuous.
+\end{corollary}
+
+%TODO: TVS 的子空间是开集, 闭集性质.
+% 有限维的时候是闭集, 如果是开集, 则只能是整个空间或者空集(给出这两个结果的证明)
+
+By replacing ``bounded sequence'' by ``Cauchy sequence'' or ``Convergent sequence'' in \ref{theorem-Banach-Steinhaus-theorem}, we have similar conclusions.
+
+\begin{theorem}
+  \label{theorem-Banach-Steinhaus-for-Cauchy-or-convergent-sequence}
+  Suppose \( X \) and \( Y \) are topological vector space, and \( \left\lbrace \Lambda_n \right\rbrace \) is a sequence of continuous linear mappings of \( X \) into \( Y \).
+  \begin{enumerate}
+    \item If \( C \) is the set of all \( x \in X \) for which \( \Lambda_n x \) is a Cauchy sequence in \( Y \), and if \( C \) is of the second category in \( X \), then \( C = X \).
+    \item If \( L \) is the set of all \( x \in X \) at which
+          \[
+            \Lambda x = \lim\limits_{n \to \infty} \Lambda_n x
+          \]
+          exists; if \( L \) is of the second category in \( X \), and if \( Y \) is an \( F \)-space, then \( L = X \) and \( \Lambda: X \to Y \) is continuous.
+  \end{enumerate}
+\end{theorem}
+
+Moreover, (2) in \ref{theorem-Banach-Steinhaus-for-Cauchy-or-convergent-sequence} can be modified as the following.
+
+\begin{theorem}
+  \label{theorem-Banach-Steinhaus-for-convergent-sequence-in-F-space}
+  If \( \left\lbrace \Lambda_n \right\rbrace \) is a sequence of continuous linear mappings from a \( F \)-space \( X \) into a topological space \( Y \), and if
+  \[
+    \Lambda x = \lim\limits_{n \to \infty} \Lambda_n x
+  \]
+  exists for every \( x \in X \), then \( \Lambda \) is continuous.
+\end{theorem}
+
+In the following variant of the Banach-Steinhaus theorem \ref{theorem-Banach-Steinhaus-theorem}, the category argument is applied to a compact set.
+
+\begin{theorem}
+  Suppose \( X \) and \( Y \) are topological vector space, \( K \) is a compact convex set in \( X \), \( \Gamma \) is a collection of continuous linear mappings of \( X \) into \( Y \), and the orbits
+  \[
+    \Gamma(x) = \left\lbrace \Lambda x: \Lambda \in \Gamma \right\rbrace
+  \]
+  are bounded subsets of \( Y \), for every \( x \in K \).
+  Then there is a bounded set \( B \subseteq Y \) such that \( \Lambda(K) \subseteq B \) for every \( \Lambda \in \Gamma \).
+\end{theorem}
+
+\subsection{The Open Mapping Theorem}
+\label{subsection-the-open-mapping-theorem}
+
+\begin{theorem}
+  \label{theorem-the-open-mapping-theorem}
+  Suppose
+  \begin{enumerate}
+    \item \( X \) is an \( F \)-space,
+    \item \( Y \) is a topological vector space,
+    \item \( \Lambda: X \to Y \) is continuous and linear, and
+    \item \( \Lambda(X) \) is of the second category in \( Y \).
+  \end{enumerate}
+  Then
+  \begin{enumerate}
+    \item \( \Lambda(X) = Y \),
+    \item \( \Lambda \) is an open mapping, and
+    \item \( Y \) is an \( F \)-space.
+  \end{enumerate}
+\end{theorem}
+
+\begin{corollary}
+  \label{corollary-the-open-mapping-theorem}
+  \begin{enumerate}
+    \item If \( \Lambda \) is a continuous linear mapping of an \( F \)-space \( X \) onto an \( F \)-space \( Y \), then \( \Lambda \) is open.
+    \item If \( \Lambda \) satisfies (1) and is one-to-one, then \( \Lambda ^{-1}: Y \to X \) is continuous.
+    \item If \( X \) and \( Y \) are Banach spaces, and if \( \Lambda: X \to Y \) is continuous, linear, one-to-one, and onto, then there exist positive real numbers \( a \) and \( b \) such that
+          \[
+            a \left\lVert x \right\rVert \leq \left\lVert \Lambda x \right\rVert \leq b \left\lVert x \right\rVert
+          \]
+          for every \( x \in X \).
+    \item If \( \tau_1 \subseteq \tau_2 \) are vector topologies on a vector space \( X \) and if both \( (X, \tau_1) \) and \( (X, \tau_2) \) are \( F \)-spaces, then \( \tau_1 = \tau_2 \).
+  \end{enumerate}
+\end{corollary}
+
+\subsection{The Closed Graph Theorem}
+\label{subsection-the-closed-graph-theorem}
+We know that
+\begin{proposition}
+  \label{proposition-Hausdorff-graph-closed}
+  If \( X \) is a topological space, \( Y \) is a Hausdorff space, and \( f: X \to Y \) is continuous, then the graph \( G \) is closed.
+\end{proposition}
+
+The following kind of inverse of \ref{proposition-Hausdorff-graph-closed} is true, called the closed graph theorem.
+
+\begin{theorem}[The Closed Graph Theorem]
+  \label{theorem-the-closed-graph-theorem}
+  Suppose
+  \begin{enumerate}
+    \item \( X \) and \( Y \) are \( F \)-spaces,
+    \item \( \Lambda: X \to Y \) is linear,
+    \item \( G = \left\lbrace (x, \Lambda x): x \in Y \right\rbrace \) is closed in \( X \times Y \).
+  \end{enumerate}
+  Then \( \Lambda \) is continuous.
+\end{theorem}
+
+\subsection{Bilinear Mappings}
+\label{subsection-bilinear-mappings}
+
+\begin{definition}
+  \label{definition-separately continuous}
+  Let \( X, Y, Z \) are topological vector spaces and \( B: X \times Y \to Y \) is a map.
+  if every \( B_x(y) := B(x, y) \) and every \( B^y := B(x, y) \) is continuous, then \( B \) is said to be \emph{separately continuous}.
+\end{definition}
+
+%TODO: 我需要开一栏乘积拓扑线性空间吗?
+\begin{theorem}
+  \label{theorem-bilinear-mapping}
+  Suppose \( B: X \times Y \to Z \) is bilinear and separately continuous, \( X \) is an \( F \)-space, and \( Y \) and \( Y \) are topological vector spaces.
+  Then
+  \[
+    B(x_n, y_n) \to B(x_0, y_0) \text{ in } Z
+  \]
+  whenever \( x_n \to x_0 \) in \( X \) and \( y_n \to y_0 \) in \( Y \).
+  If \( Y \) is metrizable, it follows that \( B \) is continuous.
+\end{theorem}
+\begin{proof}
+  Application of \ref{theorem-Banach-Steinhaus-theorem} by constructing \( b_n(x) = B(x, y_n) \) and noting that
+  \[
+    B(x_n, y_n) - B(x_0, y_0) = b_n(x_n - x_0) + B(x_0, y_n - y_0).
+  \]
+\end{proof}
+
+\section{Convexity}
+\label{section-convexity}
+
+\subsection{The Hahn-Banach Theorems}
+
+\begin{definition}
+  \label{definition-dual-space-of-topological-vector-space}
+  The \emph{dual space} of a topological vector space \( X \) is the vector space \( X^* \) whose elements are the \emph{continuous} linear functionals on \( X \).
+\end{definition}
+
+\begin{remark}
+  \label{remark-real-and-complex-linear}
+  It will be convenient to use the following terminology: An additive functional \( \Lambda \) on a complex vector space \( X \) is called \emph{real-linear(complex-linear)} if \( \Lambda(\alpha x) = \alpha \Lambda x \) for every \( x \in X \) and for every real(complex) scalar \( \alpha \).
+  If \( u \) is the real part of a complex-linear functional \( f \) on \( X \), then \( u \) is real-linear and
+  \begin{equation}
+    f(x) = u(x) - iu(ix)\quad (x \in X)
+    \label{equation-real-part-of-complex-linear-functional}
+  \end{equation}
+  because \( z = \operatorname{Re} z - i \operatorname{Re}(iz) \) for every \( z \in \mathbb{C} \).
+
+  Conversely, if \( u: X \to \mathbb{R} \) is real-linear on a complex vector space \( X \) and if \( f \) is defined by \eqref{equation-real-part-of-complex-linear-functional}, a straightforward computation shows that \( f \) is complex linear.
+\end{remark}
+
+\paragraph{Extension} We will give some theorems about extending functions of subspace into the whole space with some controls.
+
+\begin{theorem}
+  \label{theorem-real-linear-functional-extension}
+  Suppose
+  \begin{enumerate}
+    \item \( M \) is a subspace of a real vector space \( X \),
+    \item \( p: X \to \mathbb{R} \) satisfies
+          \[
+            p(x + y) \leq p(x) + p(y) \text{ and } p(tx) = p(x)
+          \]
+          if \( x \in X \), \( y \in X \), \( t \geq 0 \),
+    \item \( f: M \to \mathbb{R} \) is linear and \( f(x) \leq p(x) \) on \( M \).
+  \end{enumerate}
+  Then there exists a linear \( \Lambda: X \to \mathbb{R} \) such that
+  \[
+    \Lambda x = f(x) (x \in M)
+  \]
+  and
+  \[
+    -p(-x) \leq \Lambda x \leq p(x) (x \in X).
+  \]
+\end{theorem}
+
+\begin{theorem}
+  \label{theorem-linear-functional-extension}
+  Suppose \( M \) is a subspace of a vector space \( X \), \( p \) is a seminorm on \( X \), and \( f \) is a linear functional  on \( M \) such that
+  \[
+    \left\lvert f(x) \right\rvert \leq p(x) \quad (x \in M).
+  \]
+  Then \( f \) extends to a linear functional \( \Lambda \) on \( X \) that satisfies
+  \[
+    \left\lvert \Lambda x \right\rvert \leq p(x) \quad (x \in X).
+  \]
+\end{theorem}
+\begin{proof}
+  If the scalar field is \( \mathbb{R} \), this is contained in \ref{theorem-real-linear-functional-extension}.
+  Assume that the scalar field is \( \mathbb{C} \).
+  Put \( u = \operatorname{Re} f \), then by \ref{theorem-real-linear-functional-extension}, there is a real-linear \( g \) on \( X \) such that
+  \[
+    g = u \text{ on } M \text{ and } g \leq p \text{ on } X.
+  \]
+  Let \( \Lambda \) be the complex-linear functional on \( X \) whose real part is \( g \), then by \eqref{equation-real-part-of-complex-linear-functional}, \( \Lambda = f \) on \( M \).
+
+  Finally, to every \( x \in X \) corresponds an \( \alpha \in \mathbb{C} \), \( \left\lvert \alpha \right\rvert = 1 \), such that \( \alpha \Lambda x = \left\lvert \Lambda x \right\rvert \).
+  Hence
+  \[
+    \left\lvert \Lambda x \right\rvert = \Lambda(\alpha x) = g(\alpha x) \leq p(\alpha x) = p(x).
+  \]
+\end{proof}
+
+\begin{corollary}
+  \label{corollary-linear-functional-extension}
+  If \( X \) is a normed space and \( x_0 \in X \), there exists \( \Lambda \in X^* \) such that
+  \[
+    \Lambda x_0 = \left\lVert x_0 \right\rVert \text{ and } \left\lvert \Lambda x \right\rvert \leq \left\lVert x \right\rVert \text{ for all } x \in X.
+  \]
+\end{corollary}
+\begin{proof}
+  If \( x_0 = 0 \), take \( \Lambda = 0 \).
+  If \( x_0 \neq 0 \), apply \ref{theorem-linear-functional-extension}, with \( p(x) = \left\lVert x \right\rVert \), \( M \) the one-dimensional space generated by \( x_0 \), and \( f(\alpha x_0) = \alpha \left\lVert x_0 \right\rVert \) on \( M \).
+\end{proof}
+
+\paragraph{Separation} Here we will apply what we discuss before to show some disjoint convex sets in a topological vector space can be separated.
+
+\begin{theorem}
+  \label{theorem-Hahn-Banach}
+  Suppose \( A \) and \( B \) are disjoint, nonempty, convex sets in a topological vector space \( X \).
+  \begin{enumerate}
+    \item If \( A \) is open there exist \( \Lambda \in X^* \) and \( \gamma \in \mathbb{R} \) such that
+          \[
+            \operatorname{Re} \Lambda x < \gamma \leq \operatorname{Re} \Lambda y
+          \]
+          for every \( x \in A \) and for every \( y \in B \).
+    \item If \( A \) is compact, \( B \) is closed, and \( X \) is locally convex, then there exist \( \Lambda \in X^* \), \( \gamma_1 \in \mathbb{R} \), \( \gamma_2 \in \mathbb{R} \), such that
+          \[
+            \operatorname{Re} \Lambda x < \gamma_1 < \gamma_2 < \operatorname{Re} \Lambda y
+          \]
+          for every \( x \in A \) and for every \( y \in B \).
+  \end{enumerate}
+\end{theorem}
+\begin{proof}
+  By \eqref{equation-real-part-of-complex-linear-functional}, it suffices to prove this for real scalar.
+  (1) Fix \( a_0 \in A \), \( b_0 \in B \), and put \( x_0 = b_0 - a_0 \), \( C = A - B + x_0 \).
+  Then \( C \) is a convex neighborhood of \( 0 \) in \( X \).
+  Let \( p = p(x) := \inf \left\lbrace t \in \mathbb{R}: x \in tC \right\rbrace \) be the Minkowski functional of \( C \), where \( x \in X \).
+  %TODO: complete theorem 1.35
+  Since \( A \) is open, \( A \) is obsorbing, then by theorem 1.35, \( p \) satisfies the hypothesis of \ref{theorem-real-linear-functional-extension}.
+  Since \( A \cap B = \varnothing \), we know \( 0 \notin A - B \) which implies that \( x_0 \notin C \), and so \( p(x_0) \geq 1 \).
+
+  Define \( f(t x_0) = t \) on the subspace \( M \) of \( X \) generated by \( x_0 \).
+  Then
+  \[
+    \begin{cases}
+      f(t x_0) = t \leq t p(x_0) = p(t x_0) & \text{ if } t \geq 0, \\
+      f(tx_0) < 0 \leq p(tx_0)              & \text{ if } t < 0.
+    \end{cases}
+  \]
+  Thus \( f \leq p \) on \( M \).
+  By \ref{theorem-real-linear-functional-extension}, \( f \) extends to a linear functional \( \Lambda \) on \( X \) that also satisfies \( \Lambda \leq p \).
+
+  In particular, \( \Lambda \leq p < 1 \) on \( C \) and hence \( \Lambda \geq -1 \) on \( -C \), so that \( \left\lvert \Lambda \right\rvert \leq 1 \) on the neighborhood \( C \cap (-C) \) of \( 0 \).
+  For linear funtionals, boundedness is equivalent to continuity, so \( \Lambda \in X^* \). %TODO: complete the proof
+
+  If now \( \alpha \in A \) and \( b \in B \), we have
+  \[
+    \Lambda a - \Lambda b + 1 = \Lambda(a - b + x_0) \leq p(a - b + x_0) < 1
+  \]
+  since \( \Lambda x_0 = 1 \), \( a - b + x_0 \in C \), and \( C \) is open.
+
+  It follows that \( \Lambda(A) \) and \( \Lambda(B) \) are disjoint convex subsets of \( R \), with \( \Lambda(A) \) to the left of \( \Lambda(B) \).
+  Also \( \Lambda(A) \) is an open set since \( A \) is open and sinceevery nonconstant linear functional on \( X \) is an open mapping. %TODO: why?
+  Let \( \gamma \) be the right end point of \( \Lambda(A) \) to get the conclusion of (1).
+
+  (2) There is a convex neighborhood \( V \) of \( 0 \) in \( X \) such that \( (A + V) \cap B = \varnothing \). % TODO: Complete this
+  Then we can apply (1), and noting that \( \Lambda(A) \) is a compact subset of \( \Lambda(A + V) \), it can attain its upper boundary.
+\end{proof}
+
+\begin{corollary}
+  \label{corollary-seperating-points}
+  If \( X \) is a locally convex space then \( X^* \) separates points on \( X \).
+\end{corollary}
+
+\begin{theorem}
+  \label{theorem-separating-subspace-and-point}
+  Suppose \( M \) is a subspace of a locally convex space \( X \), and \( x_0 \in X \).
+  If \( x_0 \) is not in the closure of \( M \), then there exists \( \Lambda \in X^* \) such that \( \Lambda x_0 = 1 \) but \( \Lambda x = 0 \) for every \( x \in M \).
+\end{theorem}
+\begin{proof}
+  \ref{theorem-Hahn-Banach}, there exists \( \Lambda \in X^* \) such that the real parts of \( \Lambda x_0 \) and \( \Lambda(M) \) are disjoint.
+  But \( \Lambda(M) \) is a subspace of the scalar field, this forces \( \Lambda(M) = \left\lbrace 0 \right\rbrace \) and \( \Lambda x_0 \neq 0 \).
+\end{proof}
+
+\begin{theorem}
+  \label{theorem-separating-closed-set-and-point}
+  Suppose \( B \) is a convex, balanced, closed set in a locally convex space \( X \), \( x_0 \in X \), but \( x_0 \notin B \).
+  Then there exists \( \Lambda \in X^* \) such that
+  \[
+    \left\lvert \Lambda x \right\rvert \leq 1 \text{ for all } x \in B, \text{ but } \Lambda x_0 > 1.
+  \]
+\end{theorem}
+\begin{proof}
+  By \ref{theorem-Hahn-Banach}, we can obtain \( \Lambda_1 \in X^* \) with \( \Lambda_1 x_0 = r e^{i \theta} \) lies outside the closure \( K \) of \( \Lambda_1(B) \).
+  \( K \) is balanced, since \( B \) is balanced.
+  Hence there exists \( s \), \( 0 < s < r \), so that \( \left\lvert z \right\rvert \leq s \) for all \( z \in K \).
+  The functional \( \Lambda = s^{-1} e^{-i \theta} \lambda_1 \) is the desired.
+\end{proof}
+
+\subsection{Weak Topologies}
+\label{subsection-weak-topologies}
+
+%TODO: a topology result
+\begin{theorem}
+  \label{theorem-compare-topologies}
+  If \( \tau_1 \subset \tau_2 \) are topologies on a set \( X \), if \( \tau_1 \) is Hausdorff, and if \( \tau_2 \) is compact, then \( \tau_1 = \tau_2 \).
+\end{theorem}
+
+\begin{example}
+  \label{example-quotient-topology-comparison}
+  Consider the quotient topology \( \tau_N \) of \( X / N \) and the quotient map \( \pi: X \to X / N \).
+  By definition, \( \tau_N \) is the strongest topology on \( X / N \) that makes \( \pi \) continuous, and it is the weakest one that makes \( \pi \) an open mapping.
+\end{example}
+
+\begin{definition}
+  \label{definition-weak-topology}
+  Suppose next that \( X \) is a set and \( \mathcal{F} \) is a nonemty family of mappings \( f: X \to Y_f \), where each \( Y_f \) is a topological space.
+  Let \( \tau \) be the collection of all unions of finite intersections of sets \( f^{-1}(V) \), with \( f \in \mathcal{F} \) and \( V \) open in \( Y_f \).
+  Then \( \tau \) is a topology is a topology on \( X \), and it is in fact the weakest topology on \( X \) that makes every \( f \in \mathcal{F} \) continuous.
+  This \( \tau \) is called the \emph{weak topology} on \( X \) induced by \( \mathcal{F} \), or, \( \mathcal{F} \)-topology of \( X \).
+\end{definition}
+
+\section{Duality In Banach Spaces}
+\label{section-duality-in-Banach-spaces}
+
+\begin{theorem}
+  \label{theorem-range-null-adjoint-and-annihilators}
+  Suppose \( X \) and \( Y \) are Banach spaces, and \( T \in \mathcal{B}(X, Y) \).
+  Then
+  \[
+    \mathcal{N}(T^*) = \mathcal{R}(T)^{\perp} \text{ and } \mathcal{N}(T) = {}^{\perp}\mathcal{R}(T^*).
+  \]
+\end{theorem}
+\begin{proof}
+  For the first statement:
+  \begin{align*}
+    y^* \in \mathcal{N}(T^*) &\iff T^* y^* = 0 \iff \left\langle x, T^* y^* \right\rangle = 0 \text{ for all } x\\
+                             &\iff \left\langle Tx, y^* \right\rangle = 0 \text{ for all } x \iff y^* \in \mathcal{R}(T)^{\perp}.
+  \end{align*}
+  For the second statement:
+  \begin{align*}
+    x \in \mathcal{N}(T) &\iff Tx = 0 \iff \left\langle Tx, y^* \right\rangle = 0 \text{ for all } y^*\\
+                         & \iff \left\langle x, T^* y^* \right\rangle = 0 \text{ for all } y^* \iff x \in {}^{\perp} \mathcal{R}(T^*).
+  \end{align*}
+\end{proof}
+
+\begin{corollary}
+  \label{corollary-range-null-adjoint-and-annihilators}
+  \begin{enumerate}
+    \item \( \mathcal{N}(T^*) \) is \( \text{weak}^* \)-closed in \( Y^* \).
+    \item \( \mathcal{R}(T) \) is dense in \( Y \) if and only if \( T^* \) is one-to-one.
+    \item \( T \) is one-to-one if and only if \( \mathcal{R}(T^*) \) is \( \text{weak}^* \)-dense in \( X^* \).
+  \end{enumerate}
+\end{corollary}
+\begin{proof}
+  
+\end{proof}
+
+\begin{theorem}
+  \label{theorem-equivalent-open-unit-ball-in-Banach-space}
+  Let \( U \) and \( V \) be the open unit balls in the Banach spaces \( X \) and \( Y \), respectively.
+  If \( T \in \mathcal{B}(X, Y) \) and \( \delta > 0 \), then the implications
+  \[
+    (1) \implies (2) \implies (3) \implies (4)
+  \]
+  hold among the following statements:
+  \begin{enumerate}
+    \item \( \left\lVert T^* y^* \right\rVert \geq \delta \left\lVert y^* \right\rVert \) for every \( y^* \in Y^* \).
+    \item \( \overline{T(U)} \supseteq \delta V \).
+    \item \( T(U) \supseteq \delta V \).
+    \item \( T(X) = Y \).
+  \end{enumerate}
+  Moreover, if (4) holds, then (1) folds for some \( \delta > 0 \).
+\end{theorem}
+
+\begin{theorem}
+  \label{theorem-closeness-and-adjoint}
+  If \( X \) and \( Y \) are Banach spaces and if \( T \in \mathcal{B}(X, Y) \), then the followings are equivalent:
+  \begin{enumerate}
+    \item \( \mathcal{R}(T) \) is closed in \( Y \).
+    \item \( \mathcal{R}(T^*) \) is weak\( ^* \)-closed in \( X^* \).
+    \item \( \mathcal{R}(T^*) \) is norm-closed in \( X^* \).
+  \end{enumerate}
+\end{theorem}
+\begin{proof}
+  \( (2) \implies (3) \) is clear.
+  Now we show that \( (1) \implies (2) \).
+  Suppose \( (1) \) holds.
+\end{proof}
+
+\begin{theorem}
+  Suppose \( X \) and \( Y \) are Banach spaces, and \( T \in \mathcal{B}(X, Y) \).
+  Then \( \mathcal{R}(T) = Y \) if and only if \( T^* \) is one-to-one and \( \mathcal{R}(T^*) \) is norm-closed.
+\end{theorem}
+\begin{proof}
+  If \( \mathcal{R}(T) = Y \), then \( T^* \) is one-to-one by \ref{corollary-range-null-adjoint-and-annihilators}.
+  By \ref{theorem-equivalent-open-unit-ball-in-Banach-space}, \( T^* \) is a dilation.
+  By completeness, \( \mathcal{R}(T^*) \) is closed. %TODO: thm 1.26
+
+  If the latter statement holds, then \( \mathcal{R}(T) \) is dense in \( Y \) by \ref{corollary-range-null-adjoint-and-annihilators}.
+  \( \mathcal{R}(T) \) is closed by \ref{theorem-closeness-and-adjoint}.
+\end{proof}
+
+\begin{definition}
+  \label{definition-compact-linear-map}
+  Suppose \( X \) and \( Y \) are Banach spaces and \( U \) is the open unit ball in \( X \).
+  A linear map \( T: X \to Y \) is said to be \emph{compact} if the closure of \( T(U) \) is compact in \( Y \).
+  It is clear that \( T \) is then bounded.
+  Thus \( T \in \mathcal{B}(X, Y) \).
+\end{definition}
+
+\begin{definition}
+  \label{definition-invertible-operator}
+  \label{definition-spectrum}
+  \label{definition-eigenvalue}
+  \label{definition-eigenvector}
+  \begin{enumerate}
+    \item Suppose \( X \) is a Banach space.
+      Then \( \mathcal{B}(X) \) is not merely a Banach space but also an algebra: If \( S \in \mathcal{B}(X) \) and \( T \in \mathcal{B}(X) \), one defines \( ST \in \mathcal{B}(X) \) by
+      \[
+        (ST)(x) := S(T(x))\quad \text{ where } x \in X.
+      \]
+      The inequality
+      \[
+        \left\lVert ST \right\rVert \leq \left\lVert S \right\rVert \left\lVert T \right\rVert
+      \]
+      is trivial to verify.
+
+      In particular, powers of \( T \in \mathcal{B}(X) \) can be defined: \( T^0 = \operatorname{Id} \), the identity mapping on \( X \), given by \( \operatorname{Id} x = x \), and \( T^n = T T^{n - 1} \), for \( n = 1, 2, 3, \cdots \).
+    \item An operator \( T \in \mathcal{B}(X) \) is said to be \emph{invertible} if there exists \( S \in \mathcal{B}(X) \) such that
+      \[
+        ST = \operatorname{Id} = TS.
+      \]
+      In this case, we write \( S = T^{-1} \).
+      By the open mapping theorem, this happens if and only if \( \mathcal{N}(T) =\left\lbrace 0 \right\rbrace \) and \( \mathcal{R}(T) = X \).
+    \item The \emph{spectrum} \( \sigma(T) \) of an operator \( T \in \mathcal{B}(X) \) is the set of all scalars \( \lambda \) such that \( T - \lambda \operatorname{Id} \) is not invertible.
+      Thus \( \lambda \in \sigma(T) \) if and only if at least one of the following statements is true:
+      \begin{enumerate}
+        \item The range of \( T - \lambda \operatorname{Id} \) is not all of \( X \).
+        \item \( T - \lambda \operatorname{Id} \) is not one-to-one.
+      \end{enumerate}
+      If (2) holds, \( \lambda \) is said to be an \emph{eigenvalue} of \( T \);
+      the corresponding eigenspace is \( \mathcal{N}(T - \lambda \operatorname{Id}) \);
+      each \( x \in \mathcal{N}(T - \lambda \operatorname{Id}) \) is an \emph{eigenvector} of \( T \);
+      it satisfies the equation
+      \[
+        T x = \lambda x.
+      \]
+  \end{enumerate}
+\end{definition}
+
+\begin{theorem}
+  Let \( X \) and \( Y \) be Banach spaces.
+  \begin{enumerate}
+    \item If \( T \in \mathcal{B}(X, Y) \) and \( \dim \mathcal{R}(T) < \infty \), then \( T \) is compact.
+    \item If \( T \in \mathcal{B}(X, Y) \), \( T \) is compact, and \( \mathcal{R}(T) \) is closed, then \( \dim \mathcal{R}(T) < \infty \).
+  \end{enumerate}
+\end{theorem}
+\begin{proof}
+  (1) % TODO: follows from thm 1.21.
+  (2) % TODO: follows from thm 1.22.
+\end{proof}
+
+\end{document}

@@ -1,0 +1,126 @@
+\input{preamble}
+\begin{document}
+\section{Arithmetric property of Complex Number}
+% Maybe topology part, and arithmetric part?
+For convenience, we assume that \( \alpha, \beta, \gamma, \delta \in \mathbb{R} \).
+\paragraph{Addition}
+\[
+  (\alpha + i\beta) + (\gamma + i \delta) = (\alpha + \gamma) + i(\beta + \delta).
+\]
+\paragraph{Multiplication}
+\[
+  (\alpha + i\beta)(\gamma + i\delta) = (\alpha \gamma - \beta \delta) + i(\alpha \delta + \beta \gamma).
+\]
+\paragraph{Division}
+Provided that \( \gamma + i \delta \neq 0 \), then
+\[
+  \frac{\alpha + i\beta}{\gamma + i\delta} = \frac{(\alpha + i\beta)(\gamma - i\delta)}{(\gamma + i\delta)(\gamma - i\delta)} = \frac{(\alpha \gamma + \beta \delta) + i(\beta \gamma - \alpha \delta)}{\gamma^2 + \delta^2},
+\]
+in particular,
+\[
+  \frac{1}{\alpha + i\beta} = \frac{\alpha - i\beta}{\alpha^2 + \beta^2}.
+\]
+\paragraph{Square Roots}
+\[
+  \sqrt{\alpha + i\beta} = \pm \left( \sqrt{\frac{\alpha + \sqrt{\alpha^2 + \beta^2}}{2}} \right) + i \frac{\beta}{\left\lvert \beta \right\rvert}\sqrt{\frac{-\alpha + \sqrt{\alpha^2 + \beta^2}}{2}},
+\]
+since if \( (x + iy)^2 = \alpha + i \beta \) then
+\begin{align*}
+  x^2 - y^2 = \alpha\\ 2xy = \beta.
+\end{align*}
+Hence \( (x^2 + y^2)^2 = (x^2 - y^2)^2 + 4x^2y^2 = \alpha^2 + \beta^2 \), which implies \( x^2 + y^2 = \sqrt{\alpha^2 + \beta^2} \).
+Now we can solve \( x \) and \( y \).
+\paragraph{Conjugation} The transformation which replaces \( \alpha + i \beta \) by \( \alpha - i \beta \) is called \emph{complex conjugation}, and \( \alpha - i \beta \) is the \emph{conjugate} of \( \alpha + i \beta \).
+\begin{itemize}
+  \item The conjagtion is an \emph{involutory} transformation: this means that \( \overline{\overline{a}} = a \).
+  \item \( \operatorname{Re} a = \frac{a + \overline{a}}{2}, \quad \operatorname{Im} a = \frac{a - \overline{a}}{2i} \).
+  \item \( \overline{a + b} = \overline{a} + \overline{b}, \overline{ab} = \overline{a} \cdot \overline{b}, (\overline{b / a}) = \overline{b} / \overline{a} \).
+    More generally, let \( R(a, b, c, \cdots) \) stand for any rational operation applied to the complex number \( a, b, c, \cdots \). Then
+    \[
+      \overline{R(a, b, c, \cdots)} = R(\overline{a}, \overline{b}, \overline{c}, \cdots).
+    \]
+\end{itemize}
+
+\paragraph{Absolute Value}
+The product \( a \overline{a} = \alpha^2 + \beta^2 \) is always positive or zero.
+Its nonnegative square root is called the \emph{modulus} or \emph{absolute value} of the complex number \( a \); it is denoted by \( \left\lvert a \right\rvert \).
+\begin{itemize}
+  \item The absolute value of a product is equal to the product of the absolute values of the factors:
+    \[
+      \left\lvert a_1 a_2 \cdots a_n \right\rvert = \left\lvert a_1 \right\rvert \cdot \left\lvert a_2 \right\rvert \cdots \left\lvert a_n \right\rvert.
+    \]
+  \item \( \left\lvert a + b \right\rvert^2 = \left\lvert a \right\rvert^2 + \left\lvert b \right\rvert^2 + 2 \operatorname{Re} a \overline{b} \), \(  \left\lvert a - b \right\rvert^2 = \left\lvert a \right\rvert^2 + \left\lvert b \right\rvert^2 - 2 \operatorname{Re} a \overline{b}  \).
+    By addition we obtain the identity
+    \[
+      \left\lvert a + b \right\rvert^2 + \left\lvert a - b \right\rvert^2 = 2 \left( \left\lvert a \right\rvert^2 + \left\lvert b \right\rvert^2 \right).
+    \]
+\end{itemize}
+
+\paragraph{Inequality}
+
+\paragraph{Geotric Addtion and Multiplication} For \( a_1 = r_1 (\cos \varphi_1 + i \sin \varphi_1) \) and \(  a_2 = r_2 (\cos \varphi_2 + i \sin \varphi_2) \), we have
+\[
+  a_1 a_2 = r_1 r_2 [\cos (\varphi_1 + \varphi_2) + i \sin (\varphi_1 + \varphi_2)].
+\]
+The argument of a product is equal to the sum of the arguments of the factors.
+\paragraph{The Binomial Equation}
+\[
+  a^n = r^n(\cos n \varphi + i \sin n \varphi),
+\]
+for \( n \in \mathbb{Z} \).
+
+To find the \( n \)th root of a complex number \( a \) we have to solve the equation
+\[
+  z^n = a.
+\]
+Suppose that \( a \neq 0 \) we write \( a = r(\cos \varphi + i \sin \varphi) \) and \( z = \rho(\cos \theta + i \sin \theta) \).
+Then
+\[
+  z = \sqrt[n]{r}\left[ \cos \left( \frac{\varphi}{n} + k\frac{2 \pi}{n} \right) + i \sin \left( \frac{\varphi}{n} + k \frac{2 \pi}{n} \right) \right],\quad k = 0, 1, \cdots, n - 1.
+\]
+\paragraph{The Spherical Representation}
+
+% compactication, local compact
+
+\section{Complex Functions}
+
+% One direction: differentian, the other: power series
+% For both, polynomials are important
+
+\subsection{Analytic Functions}
+
+%TODO: Cauchy-Riemann equations
+
+\subsection{Polynomials and Rational Functions}
+
+\subsection{Power Series}
+
+\subsection{The Exponential and Trigonometric Functions}
+
+\section{Analytic Functions}
+
+\subsection{Conformal Mappings}
+
+\subsection{Linear Fractional Transformation}
+
+\section{Complex Integration}
+
+\subsection{Path Integration}
+
+\subsection{Cauchy's Theorem and Cauchy's Formula}
+
+\subsection{Taylor Theorems}
+
+\subsection{The General Form of Cauchy's Theorem}
+
+\section{Series and Product Development}
+
+\section{Conformal Mapping and Dirichlet's Problem}
+
+\subsection{The Riemann Mapping Theorem}
+
+\subsection{Harmonic Functions}
+
+\section{Elliptic Functions}
+
+\end{document}

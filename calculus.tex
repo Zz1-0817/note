@@ -1,0 +1,234 @@
+\input{preamble}
+\begin{document}
+\section{Multi-Variables}
+
+\subsection{Inequality}
+
+\begin{definition}
+  \label{definition-convex}
+  A function \( f: \mathbb{R}^n \to \mathbb{R} \) is called \emph{convex} provided
+  \[
+    f(\tau x + (1 - \tau) y) \leq \tau f(x) + (1 - \tau) f(y)
+  \]
+  for all \( x, y \in \mathbb{R}^n \) and each \( 0 \leq \tau \leq 1 \).
+\end{definition}
+
+\begin{theorem}
+  \label{theorem-supporting-hyperplanes}
+  Suppose \( f: \mathbb{R}^n \to \mathbb{R} \) is convex.
+  Then for each \( x \in \mathbb{R}^n \) there exists \( r \in \mathbb{R}^n \) such that the inequality
+  \[
+    f(y) \geq f(x) + r \cdot (y - x)
+  \]
+  holds for all \( y \in \mathbb{R}^n \).
+\end{theorem}
+
+\subsection{Theorems}
+
+\begin{definition}
+  \label{definition-boundary-differential}
+  We say the boundary \( \partial U \) is \( C^k \) if for each point \( x^0 \in \partial U \) there exist \( r > 0 \) and a \( C^k \) function \( \gamma: \mathbb{R}^{n - 1} \to \mathbb{R} \) such that -- upon relabeling and reorienting the coordinates axes if necessary -- we have
+  \[
+    U \cap B(x^0, r) = \left\lbrace x \in B(x^0, r): x_n > \gamma(x_1, \cdots, x_{n - 1}) \right\rbrace.
+  \]
+  Likewise, \( \partial U \) is \( C^\infty \) if \( \partial U \) is \( C^k \) for \( k = 1, 2, \cdots \), and \( \partial U \) is analytic if the mapping \( \gamma \) is analytic.
+\end{definition}
+
+\begin{definition}
+  \label{definition-outward-pointing-unit-normal-vector-field}
+  \begin{enumerate}
+    \item If \( \partial U \) is \( C^1 \), then along \( \partial U \) is defined the \emph{outward pointing unit normal vector field}
+      \[
+        \nu = (\nu^1, \cdots, \nu^n).
+      \]
+      The unit normal at any point \( x^0 \in \partial U \) is \( \nu (x^0) = \nu = (\nu_1, \cdots, \nu_n) \).
+    \item Let \( u \in C^1(\overline{U}) \).
+      We call
+      \[
+        \frac{\partial u}{\partial \nu} := \nu \cdot D u
+      \]
+      the outward normal derivative of \( u \).
+  \end{enumerate}
+\end{definition}
+
+\begin{theorem}[Gauss-Green]
+  \label{theorem-Gauss-Green}
+  \begin{enumerate}
+    \item Suppose \( u \in C^1(\overline{U}) \). Then
+      \[
+        \int_{U} u_{x_i}\dif x = \int_{\partial U} u \nu^i \dif S
+      \]
+    \item(Divergence) We have
+      \[
+        \int_U \operatorname{div} u \dif x = \int_{\partial U} u \cdot v \dif S
+      \]
+      for each vector field \( u \in C^1(\overline{U}; \mathbb{R}^n) \).
+  \end{enumerate}
+\end{theorem}
+\begin{proof}
+  (1) follows from (2): apply (2) to \( w = (0, \cdots, u_{x_i}, \cdots, 0) \).
+\end{proof}
+
+\begin{theorem}[Integration by parts formula]
+  \label{theorem-integration-by-parts-formula}
+  Let \( u, v \in C^1(\overline{U}) \).
+  Then
+  \begin{equation}
+    \int_{U}u_{x_i} v \dif x = - \int_{U} u v_{x_i} \dif x + \int_{\partial U} uv \nu^i \dif S,\quad (i = 1, \cdots, n).
+  \label{equation-integration-by-parts-formula}
+  \end{equation}
+\end{theorem}
+\begin{proof}
+  Apply \ref{theorem-Gauss-Green} (1) to \( uv \).
+\end{proof}
+
+\begin{theorem}[Green]
+  Let \( u, v \in C^2(\overline{U}) \).
+  Then
+  \begin{enumerate}
+    \item \( \int_U \Delta u \dif x = \int_{\partial U} \frac{\partial u}{\partial \nu} \dif S \),
+    \item \( \int_U D v \cdot Du \dif x = - \int_U u \Delta v \dif x + \int_{\partial U} \frac{\partial u}{\partial \nu} u \dif S \),
+    \item \( \int_U u \Delta v - v \Delta u \dif x = \int_{\partial U} u \frac{\partial v}{\partial \nu} - v \frac{\partial u}{\partial \nu} \dif S \).
+  \end{enumerate}
+\end{theorem}
+\begin{proof}
+  Using \eqref{equation-integration-by-parts-formula}, with \( u_{x_i} \) in place of \( u \) and \( v \equiv 1 \), we see
+  \[
+    \int_U u_{x_i x_i} \dif x = \int_{\partial U} u_{x_i} \nu^i \dif S.
+  \]
+  Sum \( i = 1, \cdots, n \) to establish (1).
+
+  To derive (2), we employ \eqref{equation-integration-by-parts-formula} with \( v_{x_i} \) replacing \( v \).
+  (3) follows directly from (2).
+\end{proof}
+
+\begin{theorem}[Coarea formula]
+  \label{theorem-coarea-formula}
+  Let \( u: \mathbb{R}^n \to \mathbb{R} \) be Lipschitz continuous and assume that for a.e. \( r \in \mathbb{R} \) the level set
+  \[
+    \left\lbrace x \in \mathbb{R}^n: u(x) = r \right\rbrace
+  \]
+  is smooth, \( (n - 1) \)-dimensional hypersurface in \( \mathbb{R}^n \).
+  Suppose also \( f: \mathbb{R}^n \to \mathbb{R} \) is continuous and summable.
+  Then
+  \[
+    \int_{\mathbb{R}^n} f \left\lvert D u \right\rvert \dif x = \int_{-\infty}^{\infty} \left( \int_{u = r} f \dif S \right) \dif r.
+  \]
+\end{theorem}
+
+\begin{theorem}[Polar coordinates]
+  \label{theorem-polar-coordinates}
+  \begin{enumerate}
+    \item Let \( f: \mathbb{R}^n \to \mathbb{R} \) be continuous and summable.
+      Then
+      \[
+        \int_{\mathbb{R}^n} f \dif x = \int_0^{\infty}\left( \int_{\partial B(x_0, r)} f \dif S \right) \dif r
+      \]
+      for each point \( x_0 \in \mathbb{R}^n \).
+    \item In particular,
+      \[
+        \frac{\dif }{\dif r}\left( \int_{B(x_0, r)} f \dif x \right) = \int_{\partial B(x_0, r)} f \dif S
+      \]
+      for each \( r > 0 \).
+  \end{enumerate}
+\end{theorem}
+\begin{proof}
+  (1) follows directly from \ref{theorem-coarea-formula}.
+\end{proof}
+
+\begin{theorem}
+  \label{theorem-differentiation-formula-for-moving-regions}
+  Consider a family of smooth, bounded regions \( U(\tau) \subseteq \mathbb{R}^n \) that depend smoothly upon the parameter \( \tau \in \mathbb{R} \).
+  Write \( v \) for the velocity of the moving boundary \( \partial U(\tau) \) and \( \nu \) for the outward pointing unit normal.
+  If \( f = f(x, \tau) \) is a smooth function, then
+  \[
+    \frac{\dif }{\dif \tau}\int_{U(\tau)} f \dif x = \int_{\partial U(\tau)} f v \cdot \nu \dif S + \int_{U(\tau)} f_{\tau} \dif x.
+  \]
+\end{theorem}
+
+If \( U \subseteq \mathbb{R}^n \) is open and \( \varepsilon > 0 \), we write
+\[
+  U_{\varepsilon} := \left\lbrace x \in U: \operatorname{dist}(x, \partial U) > \varepsilon \right\rbrace.
+\]
+\begin{definition}
+  \label{definition-standard-mollifier}
+  \begin{enumerate}
+    \item Define \( \eta \in C^{\infty}(\mathbb{R}^n) \) by
+      \[
+        \eta(x) := \begin{cases}
+          C \exp\left(\frac{1}{\left\lvert x \right\rvert^2 - 1 }\right) & \text{ if } \left\lvert x \right\rvert < 1 \\
+        0 & \text{ if } \left\lvert x \right\rvert \geq 1
+        \end{cases}
+      \]
+      the constant \( C > 0 \) selected so that \( \int_{\mathbb{R}^n} \eta \dif x = 1 \).
+    \item For each \( \varepsilon > 0 \), set
+      \[
+        \eta_{\varepsilon}(x) := \frac{1}{\varepsilon^n}\eta\left(\frac{x}{\varepsilon}\right).
+      \]
+      We call \( \eta \) the \emph{standard mollifier}.
+      The function \( \eta_{\varepsilon} \) are \( C^\infty \) and satisfy
+      \[
+        \int_{\mathbb{R}^n}\eta_{\varepsilon} \dif x = 1,\quad \operatorname{supp}(\eta_{\varepsilon}) \subseteq B(0, \varepsilon).
+      \]
+  \end{enumerate}
+\end{definition}
+
+\begin{definition}
+  \label{definition-mollification}
+  If \( f: U \to \mathbb{R} \) is locally integrable, define its \emph{mollification}
+  \[
+    f^{\varepsilon} := \eta_{\varepsilon} \ast f \text{ in } U_{\varepsilon}.
+  \]
+  That is,
+  \[
+    f^{\varepsilon}(x) = \int_{U}\eta_{\varepsilon}(x - y) f(y) \dif y = \int_{B(0, \varepsilon)} \eta_{\varepsilon}(y) f(x - y)\dif y
+  \]
+  for \( x \in U_{\varepsilon} \).
+\end{definition}
+
+\begin{theorem}
+  \label{theorem-properties-of-mollifiers}
+  \begin{enumerate}
+    \item \( f^{\varepsilon} \in C^{\infty}(U_{\varepsilon}) \).
+    \item \( f^{\varepsilon} \to f \) a.e. as \( \varepsilon \to 0 \).
+    \item If \( f \in C(U) \), then \( f^{\varepsilon} \to f \) uniformly on compact subsets of \( U \).
+    \item If \( 1 \leq p < \infty \) and \( f \in L_{\operatorname{loc}}^{p}(U) \), then \( f^{\varepsilon} \to f \) in \( L_{\operatorname{loc}}^{p}(U) \).
+  \end{enumerate}
+\end{theorem}
+\begin{proof}
+\begin{enumerate}
+  \item Fix \( x \in U_{\varepsilon} \), \( i \in \left\lbrace 1, \cdots, n \right\rbrace \), and \( h \) so small that \( x + he_i \in U_{\varepsilon} \) so small that \( x + he_i \in U_{\varepsilon} \).
+  Then
+  \begin{align*}
+    \frac{f^{\varepsilon}(x + h e_i) - f^{\varepsilon}(x)}{h} &= \frac{1}{\varepsilon^n} \int_U \frac{1}{h} \left[ \eta \left( \frac{x + he_i - y}{\varepsilon} - \eta \left( \frac{x - y}{\varepsilon} \right) \right) \right] f(y) \dif y\\
+                                                              &=\frac{1}{\varepsilon^n} \int_V \frac{1}{h} \left[ \eta \left( \frac{x + he_i - y}{\varepsilon} - \eta \left( \frac{x - y}{\varepsilon} \right) \right) \right] f(y) \dif y
+  \end{align*}
+  for some open set \( V \subset U \). As
+  \[
+    \frac{1}{h} \left[ \eta \left( \frac{x + he_i - y}{\varepsilon} \right) - \eta \left( \frac{x - y}{\varepsilon} \right) \right] \to \frac{1}{\varepsilon} \eta_{x_i} \left(\frac{x - y}{\varepsilon}\right)
+  \]
+  uniformly on \( V \), the partial derivative \( f^{\varepsilon}_{x_i}(x) \) exists and equals
+  \[
+    \int_U \eta_{\varepsilon, x_i}(x - y)f(y) \dif y.
+  \]
+  A similar argument shows that \( D^{\alpha}f^{\varepsilon}(x) \) exists and
+  \[
+    D^{\alpha} f^{\varepsilon}(x) = \int_{U} D^{\alpha} \eta_{\varepsilon}(x - y) f(y) \dif y,\quad (x \in U_{\varepsilon}),
+  \]
+  for each multiindex \( \alpha \).
+  \item By Lebesgue's Differentiation Theorem, %TODO: what is Lebesgure' Differentiation Theorem
+    \[
+      \lim\limits_{r \to 0} \frac{1}{\alpha(n)r^n} \left\lvert f(y) - f(x) \right\rvert \dif y = 0
+    \]
+    for a.e. \( x \in U \).
+    Fix such a point \( x \).
+    Then
+    \begin{align*}
+      \left\lvert f^{\varepsilon}(x) - f(x) \right\rvert &= \left\lvert \int_{B(x, \varepsilon)} \eta_{\varepsilon}(x - y)[f(y) - f(x)] \dif y \right\rvert\\
+                                                         &\leq \frac{1}{\varepsilon^n}\int_{B(x, \varepsilon)} \eta \left( \frac{x - y}{\varepsilon} \right) \left\lvert f(y) - f(x) \right\rvert \dif y\\
+                                                         &\leq C \frac{1}{\alpha(n)r^n} \int_{B(x, \varepsilon)} \left\lvert f(y) - f(x) \right\rvert \dif y \to 0 \text{ as } \varepsilon \to 0. %TODO: why this inequality holds?
+    \end{align*}
+\end{enumerate}
+\end{proof}
+
+\end{document}

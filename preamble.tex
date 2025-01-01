@@ -1,0 +1,82 @@
+\documentclass[12pt]{article}
+
+\usepackage{xr-hyper}
+
+\usepackage{geometry}
+\usepackage{hyperref}
+ 
+\hypersetup{
+  colorlinks = true,
+  linkcolor = blue,
+  citecolor = red,
+  urlcolor = teal
+}
+
+\externaldocument[calculus-]{calculus}
+\externaldocument[group-]{group}
+\externaldocument[field-]{field}
+\externaldocument[ode-]{ode}
+\externaldocument[functional-analysis-]{functional_analysis}
+\externaldocument[pde-]{pde}
+\externaldocument[topology-]{topology}
+\externaldocument[smooth-manifold-]{smooth_manifold}
+\externaldocument[riemannian-manifold-]{riemannian_manifold}
+\externaldocument[lie-group-]{lie_group}
+
+\usepackage[leqno]{amsmath}
+\usepackage{amssymb}
+\usepackage[centercolon]{mathtools}
+\usepackage{stmaryrd}
+\usepackage{wasysym}
+\usepackage{amsthm}
+\usepackage{mathrsfs}
+\usepackage{bm}
+
+\usepackage{graphicx}
+\usepackage{float}
+
+\usepackage{tikz}
+\usepackage{tikz-cd}
+
+\geometry{
+  paper=a4paper,
+  top=3cm,
+  inner=2.54cm,
+  outer=2.54cm,
+  bottom=3cm,
+  headheight=6ex,
+  headsep=6ex,
+  twoside,
+  asymmetric
+}{\relax}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\renewcommand{\sectionmark}[1]{\markright{#1}}
+\fancyhf{}
+\fancyhead[EC]{\footnotesize{\leftmark}\vspace{1mm}} %页眉部分偶数页显示章
+\fancyhead[OC]{\footnotesize{\rightmark}\vspace{1mm}} %页眉部分奇数页显示节
+\fancyhead[LE,RO]{{\footnotesize \thepage}\vspace{1mm}} %奇数页右边, 偶数页左边显示页码
+\fancyhead[RE,LO]{}
+% \fancyfoot[C]{\NTdraftstring}
+\renewcommand{\headrulewidth}{0pt} %删去页眉横线
+\renewcommand{\footrulewidth}{0pt} %删去页脚横线
+\addtolength{\headheight}{0.5pt}
+
+\numberwithin{equation}{subsection}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\dif}{\mathop{}\!\mathrm{d}}
+\renewcommand{\hom}{\operatorname{Hom}}

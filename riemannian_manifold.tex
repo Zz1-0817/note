@@ -1,0 +1,987 @@
+\input{preamble}
+
+\begin{document}
+\title{Riemannian Manifold}
+\label{chapter-riemannian-manifold}
+
+\tableofcontents
+
+\section{Introduction}
+\label{section-Introduction}
+
+\subsection{The Euclidean Plane}
+\label{subsection-introduction-the-Euclidean-plane}
+
+\begin{quote}
+  In most people's experience, geometry is concerned with properties such as distances, lengths, angles, areas, volumes, and curvature.
+\end{quote}
+
+\begin{definition}
+  \label{definition-congruent}
+  \label{definition-rigid-motion}
+  Two plane figures are \emph{congruent} if one can be transformed into the other by a \emph{rigid motion of the plane}, which is a bijective transformation from the plane to itslef that preserves distances.
+\end{definition}
+
+In what follows, we will give some theorems we may met before in the fashion ``classification theorem'' and ``local-to-global theorem'' to illustrate what we will study in this chapter of the note.
+
+\paragraph{Triangles}
+
+\begin{theorem}
+  \label{theorem-side-side-side}
+  The Euclidean triangles are congruent if and only if the lengths of their corresponding sides are equal.
+\end{theorem}
+
+\begin{theorem}
+  \label{theorem-angle-sum}
+  The sum of the interior angles of a Euclidean triangle is \( \pi \).
+\end{theorem}
+
+\paragraph{Circles}
+
+\begin{theorem}
+  \label{theorem-circle-classification}
+  Two circles in the Euclidean plane are congruent if and only if they have the same radius.
+\end{theorem}
+
+\begin{theorem}
+  \label{theorem-circumference}
+  The circumference of a Euclidean circle of radius \( R \) is \( 2 \pi R \).
+\end{theorem}
+
+\paragraph{Plane Curve}
+
+\begin{definition}
+  \label{definition-curvature-plane-curve}
+     The \emph{curvature} of a plane curve \( \gamma \) is defined to be \( \kappa(t) = \left\lvert \gamma''(t) \right\rvert \), the length of the acceleration vector, when \( \gamma \) is given a unit-speed parametrization.
+\end{definition}
+It is often convenient for some purposes to extend the definition of the curvature of a plane curve, allowing it to take on both positive and negative values, and \begin{definition}
+  \label{definition-signed-curvature-plane-curve}
+  We call the generalizaion in the following manner \emph{signed curvature}: 
+  by choosing a continuous unit normal vector field \( N \) along the curve, and assigning the curvature a positive sign if the curve is turning toward the chosen normal or a negative sign if it is turning away from it.
+\end{definition}
+
+\begin{theorem}
+  \label{theorem-plane-curve-classification}
+  Suppose \( \gamma \) and \( \tilde{\gamma}: [a, b] \to \mathbb{R}^2 \) are smooth, unit-speed plane curves with unit normal vector fields \( N \) and \( \tilde{N} \), and \( \kappa_N(t), \kappa_{\tilde{N}}(t) \) represent the signed curvatures at \( \gamma(t) \) and \( \tilde{\gamma}(t) \), respectively.
+  Then \( \gamma \) and \( \tilde{\gamma} \) are congruent by a direction-preserving congruence if and only if \( \kappa_N(t) = \kappa_{\tilde{N}}(t) \) for all \( t \in [a, b] \).
+\end{theorem}
+
+\begin{theorem}
+  \label{theorem-total-curvature}
+  If \( \gamma:[a, b] \to \mathbb{R}^2 \) is a unit-speed simple closed curve such that \( \gamma'(a) = \gamma'(b) \), and \( N \) is the inward-pointing normal, then
+  \[
+    \int_a^b \kappa_N(t) \dif t = 2 \pi.
+  \]
+\end{theorem}
+
+\subsection{Surfaces in Space}
+\label{subsection-surfaces-in-space}
+
+\begin{quote}
+  Which properties of a surface are intrinsic?
+  Roughly speaking, intrinsic properties are those that could in principle be measured or computed by a \( 2 \)-dimensional being living entirely within the surface.
+  More precisely, a property of surfaces in \( \mathbb{R}^3 \) is called \emph{intrinsic} if it is preserved by \emph{isometries}.
+\end{quote}
+
+\begin{definition}
+  \label{definition-informal-principal-curvature}
+  The curvature of surface in space is described by two numbers at each point, called the \emph{principal curvature}.
+  Here is an informal recipe for computing them.
+  Suppose \( S \) is a surface in \( \mathbb{R}^3 \), \( p \) is a point in \( S \), and \( N \) is a unit normal vector to \( S \) at \( p \).
+  \begin{enumerate}
+    \item Choose a plane \( \Pi \) passing through \( p \) and parallel to \( N \).
+      The intersection of \( \Pi \) with a neighborhood of \( p \) in \( S \) is a plane curve \( \gamma \subseteq \Pi \) containing \( p \).
+    \item Compute the signed curvature \( \kappa_N \) of \( \gamma \) at \( p \) w.r.t. the chosen unit normal \( N \).
+    \item Repeat this for all normal planes \( \Pi \).
+      The \emph{principal curvatures} of \( S \) at \( p \), denoted by \( \kappa_1 \) and \( \kappa_2 \), are the minimum and maximum signed curvatures so obtained.
+  \end{enumerate}
+\end{definition}
+Principal curvatures are NOT intrinsic:
+\begin{example}
+  \label{example-principal-curvatures-not-intrinsic}
+  Consider
+  \[
+      S_1 = \left\lbrace (x, y, 0): 0 < x < \pi, 0 < y < \pi \right\rbrace \text{ and } S_2 = \left\lbrace (x, y, z) : 0 < x < \pi, \left\lvert y \right\rvert < 1, z = \sqrt{1 - y^2} \right\rbrace 
+  \]
+  One can check \( \kappa_1 = \kappa_2 = 0 \) for \( S_1 \) and \( \kappa_1 = 0, \kappa_2 = 1 \) for \( S_2 \).
+  But \( (x, y, 0) \mapsto (x, \cos y, \sin y) \) is an isometry from \( S_1 \) to \( S_2 \).
+\end{example}
+
+However, the great German mathematician Carl Friedrich Gauss made the surprising discovery that \( K = \kappa_1 \kappa_2 \) is intrinsic, which is now called the \emph{Gaussian curvature}.
+He thought this result was so amazing that he named it \emph{Theorema Egregium}.
+
+The model spaces of surface theory are the surfaces with constant Gaussian curvature.
+\begin{enumerate}
+  \item \( K = 0 \). The \emph{Euclidean plane} \( \mathbb{R}^2 \).
+  \item \( K > 0 \). The \emph{sphere} of radius \( R \)(in this case \( K = 1 / R^2 \)).
+  \item \( K < 0 \). The \emph{hyperbolic plane}.
+\end{enumerate}
+We can give a classification theorem and a local-to-global theorem as before:
+\begin{theorem}
+  \label{theorem-uniformation}
+  Every connected \( 2 \)-manifold is diffeomorphic to a quotient of one of the constant curvature model surfaces by a discrete group of isometries without fixed points.
+  Thus every connected \( 2 \)-manifold has a complete Riemannian metric with contant Gaussian curvature.
+\end{theorem}
+
+\begin{theorem}
+  \label{theorem-Gauss-Bonnet}
+  Suppose \( S \) is a compact Riemannian \( 2 \)-manifold.
+  Then
+  \[
+    \int_S K \dif A = 2 \pi \chi(S),
+  \]
+  where \( \chi(S) \) is the Euler characteristic of \( S \).
+\end{theorem}
+
+\subsection{Curvature in Higher Dimensions}
+\label{subsection-curvature-in-higher-dimensions}
+TODO % TODO
+
+\section{Riemannian Metrics}
+\label{section-Riemannian-metrics}
+
+\subsection{Riemannian Mainfolds}
+\label{subsection-Riemannian-manifolds}
+
+\begin{definition}
+  \label{definition-Riemannian-metric}
+  \label{definition-Riemannian-manifold}
+  Let \( M \) be a smooth manifold.
+  A \emph{Riemannian metric} on \( M \) is a smooth covariant \( 2 \)-tensor field \( g \in \mathcal{T}^2 M \) whose value \( g_p \) at each \( p \in M \) is an inner product on \( g_p(v, v) \geq 0 \) for each \( p \in M \) and each \( v \in T_p M \), with equality if and only if \( v = 0 \).
+  A \emph{Riemannian manifold} is a pair \( (M, g) \), where \( M \) is a smooth manifold and \( g \) is a specific choice of Riemannian metric on \( M \).
+\end{definition}
+
+\begin{proposition}
+  \label{proposition-smooth-manifold-admit-Riemannian-metric}
+  Every smooth manifold admits a Riemannian metric.
+\end{proposition}
+
+\begin{definition}
+  \label{definition-Riemannian-manifold-with-boundary}
+  A \emph{Riemannian manifold with boundary} is a pair \( (M, g) \), where \( M \) is a smooth manifold with boundary and \( g \) is a Riemannian metric on \( M \).
+\end{definition}
+
+Let \( g \) be a Riemannian metric on a smooth manifold \( M \) with or without boundary.
+We often use the following angle-bracket notation for \( v, w \in T_p M \):
+\[
+  \left\langle v, w \right\rangle_g = g_p(v, w).
+\]
+
+\subsection{Isometries}
+\label{subsection-isometries}
+
+\begin{definition}
+  \label{definition-isometry}
+  \label{definition-isometric}
+  Suppose \( (M, g) \) and \( (\tilde{M}, \tilde{g}) \) are Riemannian manifolds with or without boundary.
+  An \emph{isometry from} \( (M, g) \) to \( (\tilde{M}, \tilde{g}) \) is a diffeomorphism \( \phi: M \to \tilde{M} \) such that \( \phi^* \tilde{g} = g \).
+  We say \( (M, g) \) and \( (\tilde{M}, \tilde{g}) \) are \emph{isomorphic} if there exists an isometry between them.
+\end{definition}
+\begin{remark}
+  \label{remark-isometry}
+  To say \( \phi \) is an isometry from \( (M, g) \) to \( (\tilde{M}, \tilde{g}) \) is equivalent to say \( \phi \) is a smooth bijection and each differential \( \dif \phi_p: T_p M \to T_{\phi(p)} \tilde{M} \) is a linear isometry.
+\end{remark}
+
+\begin{definition}
+  \label{definition-local-isometry}
+  If \( (M, g) \) are \( (\tilde{M}, \tilde{g}) \) are Riemannian manifolds, a map \( \phi: M \to \tilde{M} \) is a \emph{local isometry} if each point \( p \in M \) has a neighborhood \( U \) such that \( \phi \mid_U \) is an isometry onto an open subset on \( \tilde{M} \).
+\end{definition}
+
+\begin{definition}
+  \label{definition-flat}
+  A Riemannian \( n \)-manifold is said to be \emph{flat} if it is locally isometric to a Euclidean space, that is, if every point has a neighborhood that is isometric to an open set in \( \mathbb{R}^n \) with its Euclidean metric.
+\end{definition}
+
+\begin{definition}
+  \label{definition-isometry-group}
+  An isometry from \( (M, g) \) to itself is called an \emph{isometry of } \( (M, g) \).
+  The set of all isometries of \( (M, g) \) is a group under composition, called the \emph{isometry group of} \( (M, g) \).
+\end{definition}
+
+\subsection{Local Representations for Metrics}
+\label{subsection-local-Representations-for-metrics}
+
+Suppose \( (M, g) \) is a Riemannian manifold with or without boundary.
+If \( (x^1, \cdots, x^n) \) are any smooth local coorinates on an open subset \( U \subseteq M \), then \( g \) can be written locall in \( U \) as
+\[
+  g = g_{ij} \dif x^i \otimes \dif x^j
+\]
+for some collection of \( n^2 \) smooth functiosn \( g_{ij} \) for \( i, j = 1, \cdots, n \).
+
+Using the symmetry of \( g_{ij} \), we compute
+%TODO recall how we define symmetric product
+\[
+    g = g_{ij} \dif x^i \otimes \dif x^j = g_{ij}\dif x^i \dif x^j
+\]
+
+\begin{definition}
+  \label{definition-orthonormal-frame}
+  A local frame \( (E_i) \) for \( M \) on open set \( U \) is said to be an orthonormal frame if the vectors \( E_1 \mid_p, \cdots, E_n \mid_p \) are an orthonormal basis for \( T_p M \) at each \( p \in U \).
+\end{definition}
+
+\begin{remark}
+  \label{remark-orthonormal-frame}
+  Equivalenly, \( (E_i) \) is an orthonormal frame if and only if
+  \[
+    \left\langle E_i, E_j \right\rangle = \delta_{ij},
+  \]
+  in which case \( g \) has the local expression
+  \[
+    g = (\varepsilon^1)^2 + \cdots (\varepsilon^n)^2,
+  \]
+  where \( (\varepsilon^i)^2 \) denotes the symmetric product \( \varepsilon^i \varepsilon^i = \varepsilon^i \otimes \varepsilon^i \).
+\end{remark}
+
+\begin{proposition}
+  \label{proposition-exitence-of-orthonormal-frames}
+  Let \( (M, g) \) be a Riemannian \( n \)-manifold with or without boundary.
+  If \( (X_j) \) is any smooth local frame for \( TM \) over an open subset \( U \subseteq M \), then there is a smooth orthonormal frame \( (E_j) \) over \( U \) such that \( \operatorname{span}(E_1 \mid_p, \cdots, E_k \mid_p) = \operatorname{span}(X_1 \mid_p, \cdots, X_k \mid_p) \) for each \( k = 1, \cdots, n \) and each \( p \in U \).
+  In particular, for every \( p \in M \), there is a smooth orthonormal frame \( (E_j) \) defined on some neighborhood of \( p \).
+\end{proposition}
+
+\begin{definition}
+  \label{definition-unit-tangent-bundle}
+  For a Riemannian manifold \( (M, g) \) with or without boundary, we definte the \emph{unit tangent bundle} to be the subset \( UTM \subseteq TM \) consisting of unit vectors:
+  \[
+    UTM := \left\lbrace (p, v) \in TM: \left\lvert v \right\rvert_g = 1 \right\rbrace.
+  \]
+\end{definition}
+
+\begin{proposition}
+  \label{proposition-properties-unit-tangent-bundle}
+  If \( (M, g) \) is a Riemannian manifold with or without boundary, its unit tangent bundle \( UTM \) is a smooth, properly embedded codimension-\( 1 \) submanifold with boundary in \( TM \), with \( \partial(UTM) = \pi^{-1}(\partial M) \), where \( \pi: UTM \to M \) is the canonical projection.
+  THe unit tangent bundle is connected if and only if \( M \) is connected, and compact if and only if \( M \) is compact.
+\end{proposition}
+%TODO: prove this, maybe I need more theorem about what?
+
+\section{The Levi-Civita Connection}
+\label{section-the-Levi-Civita-connection}
+
+\subsection{Eucliean Case}
+\label{subsection-Eucliean-LV-connection}
+
+Suppose \( \gamma: I \to M \) is a smooth curve.
+Then \( \gamma \) can be regarded as either a smooth curve in \( M \) or a smooth curve in \( \mathbb{R}^N \), and a smooth vector field \( V \) along \( \gamma \) that takes its values in \( TM \) can be regarded as either a vector field along \( \gamma \) in \( M \) or a vector field along \( \gamma \) in \( \mathbb{R}^n \).
+Let \( \overline{D}_t V \) denote the covariant derivative of \( V \) along \( \gamma \) w.r.t. the Euclidean connection \( \overline{\nabla} \), and let \( D^{\top}_t V \) denote its covariant derivative along \( \gamma \) denote its covariant derivative along \( \gamma \) w.r.t. the tangential connection \( \nabla^{\top} \).
+
+\begin{proposition}
+  \label{proposition-covariant-derivatives-relationship}
+  Let \( M \subseteq \mathbb{R}^n \) be an embedded submanifold, \( \gamma: I \to M \) a smooth curve in \( M \), and \( V \) a smooth vector field along \( \gamma \) that takes its values in \( TM \).
+  Then for each \( t \in I \),
+  \[
+    D^{\top}_t V(t) = \pi^{\top}(\overline{D}_t V(t)).
+  \]
+\end{proposition}
+
+\begin{corollary}
+  \label{corollary-covariant-derivatives-relationship}
+  Suppose \( M \subseteq \mathbb{R}^n \) is an embedded submanifold.
+  A smooth curve \( \gamma: I \to M \) is a geodesic w.r.t. the tangential connection on \( M \) if and only if its ordinary acceleration \( \gamma''(t) \) is orthogonal to \( T_{\gamma(t)} M \) for all \( t \in I \).
+\end{corollary}
+
+\subsection{Connections on Abstract Riemannian Manifolds}
+\label{subsection-connections-on-abstract-riemannian-manifolds}
+
+As we can verify that the Euclidean connection on \( \mathbb{R}^n \) has one nice property w.r.t. Euclidean metric: it satisfies the product rule
+\[
+  \overline{\nabla}_X \left\langle Y, Z \right\rangle = \left\langle \overline{\nabla}_X Y, Z \right\rangle + \left\langle Y, \overline{\nabla}_X Y \right\rangle.
+\]
+We define the following:
+
+%TODO: proposition 4.15
+\begin{definition}
+  \label{definition-compatible}
+  \label{definition-metric-connection}
+  A connection \( \nabla \) on \( TM \) is said to be \emph{compatible with} \( g \), or to be a \emph{metric connection}, if for all \( X, Y, Z \in \mathfrak{X}(M) \):
+  \[
+    \nabla_X \left\langle Y, Z \right\rangle = \left\langle \nabla_X Y , Z \right\rangle + \left\langle Y, \nabla_X Z \right\rangle.
+  \]
+\end{definition}
+
+\begin{proposition}
+  \label{proposition-characterizations-metric-connections}
+  Let \( (M, g) \) be a Riemannian manifold, and let \( \nabla \) be a connection on \( TM \).
+  The following conditions are equivalent:
+  \begin{enumerate}
+    \item \( \nabla \) is compatible with \( g \):
+      \[
+        \nabla_X \left\langle Y, Z \right\rangle = \left\langle \nabla_X Y, Z \right\rangle + \left\langle Y, \nabla_X Z \right\rangle.
+      \]
+    \item \( g \) is \emph{parallel} w.r.t. \( \nabla \): \( \nabla g \equiv 0 \).
+    \item In terms of any smooth local frame \( (E_i) \), the connection coefficients of \( \nabla \) satisfy
+      \[
+        \Gamma^l_{ki}g_{lj} + \Gamma^l_{kj}g_{il} = E_k (g_{ij}).
+      \]
+    \item If \( V, W \) are smooth vector fields along any smooth curve \( \gamma \), then
+      \[
+        \frac{\dif}{\dif t} \left\langle V, W \right\rangle = \left\langle D_t V, W \right\rangle + \left\langle V, D_t W \right\rangle.
+      \]
+    \item If \( V, W \) are parallel vector fields along a smooth curve \( \gamma \) in \( M \), then \( \left\langle V, W \right\rangle \) is constant along \( \gamma \).
+    \item Given any smooth curve \( \gamma \) in \( M \), every parallel transport map along \( \gamma \) is a linear isometry.
+    \item Given any smoth curve \( \gamma \) in \( M \), every orthonormal basis at a point \( \gamma \) can be extended to a parallel orthonormal frame along \( \gamma \).
+  \end{enumerate}
+\end{proposition}
+
+\begin{corollary}
+  \label{corollary-characterizations-metric-connections}
+  Suppose \( (M, g) \) is a Riemannian or pseudo-Riemannian manifold with or without boundary, \( \nabla \) is a metric connection on \( M \), and \( \gamma: I \to M \) is a smooth curve.
+  \begin{enumerate}
+    \item \( \left\lvert \gamma'(t) \right\rvert \) is constant if and only if \( D_t \gamma'(t) \) is orthogonal to \( \gamma'(t) \) for all \( t \in I \).
+    \item If \( \gamma \) is a geodesic, then \( \left\lvert \gamma'(t) \right\rvert \) is constant.
+  \end{enumerate}
+\end{corollary}
+
+\begin{proposition}
+  \label{proposition-tangential-connection-compatible}
+  If \( M \) is an embedded Riemannian or pseudo-Riemannian submanifold of \( \mathbb{R}^n \) or \( \mathbb{R}^{r,s} \), the tangential connection on \( M \) is compatible with the induced Riemannian or pseudo-Riemannian metric.
+\end{proposition}
+
+\subsection{Symmetric Connections}
+\label{symmetric-connections}
+
+As we can verify that the Euclidean connection on \( \mathbb{R}^n \) has an another nice property w.r.t. Euclidean metric: it satisfies the product rule
+\[
+  \overline{\nabla}_X Y - \overline{\nabla}_Y X = [X, Y].
+\]
+Thus, we naturally define the following:
+
+\begin{definition}
+  \label{definition-connection-symmetric}
+  We say that a connection \( \nabla \) on the tangent bundle of a smooth manifold \( M \) is \emph{symmetric} if
+  \[
+    \nabla_X Y - \nabla_Y X \equiv [X, Y],\quad \text{ for all } X, Y \in \mathfrak{X}(M).
+  \]
+\end{definition}
+\noindent To study this, we define
+\begin{definition}
+  \label{definition-torsion-tensor}
+  The \emph{torsion tensor} is the smooth \( (1, 2) \)-tensor field \( \tau: \mathfrak{X}(M) \times \mathfrak{X}(M) \to \mathfrak{X}(M) \) defined by
+  \[
+    \tau(X, Y) := \nabla_X Y - \nabla_Y X - [X, Y].
+  \]
+\end{definition}
+
+\begin{proposition}
+  \label{proposition-tangential-connection-symmetric}
+  If \( M \) is an embeded (pseudo-)Riemannian submanifold of a (pseudo-)Euclidean space, then the tangential connection on \( M \) is symmetric.
+\end{proposition}
+
+\begin{theorem}
+  \label{theorem-fundamental-theorem-of-Riemannian-geometry}
+  Let \( (M, g) \) be a Riemannian or pseudo-Riemannian manifold(with or without boundary).
+  There exists a unique connection \( \nabla \) on \( TM \) that is compatible with \( g \) and symmetric.
+  It is called the \emph{Levi-Civita connection of} g.
+\end{theorem}
+
+\section{Curvature}
+\label{section-curvature}
+
+\subsection{The Curvature Tensor}
+\label{subsection-the-curvature-tensor}
+
+\begin{definition}
+  \label{definition-curvature-endomorphism}
+  Let \( (M, g) \) be a Riemannian or pseudo-Riemannian manifold, and define a map \( R: \mathfrak{X}(M) \times \mathfrak{X}(M) \times \mathfrak{X}(M) \to \mathfrak{X}(M) \), by
+  \[
+    R(X, Y) Z := \nabla_X \nabla_Y Z - \nabla_Y \nabla_X Z - \nabla_{[X, Y]} Z.
+  \]
+  Then \( R \) is a \( (1, 3) \)-tensor field on \( M \).
+  For each pair of vector fields \( X, Y \in \mathfrak{X}(M) \), then map \( R(X, Y): \mathfrak{X}(M) \to \mathfrak{X}(M) \) given by \( Z \mapsto R(X, Y) Z \) is a smooth bundle endomorphism of \( TM \), called the \emph{curvature endomorphism determined by } \( X \) and \( Y \).
+  The tensor field \( R \) itself is called the \emph{(Riemannian) curvature endomorphism} or the \( (1, 3) \)-\emph{curvature tensor}.
+\end{definition}
+\begin{remark}
+  \label{remark-curvature-endomorphism}
+  As a \( (1, 3) \)-tensor field, the curvature endomorphism can be wriiten in terms of any local frame with one upper and three lower indices.
+  For example,
+  \[
+    R = R_{ijk}{}^l \dif x^i \otimes \dif x^j \otimes \dif x^k \otimes \partial_l,
+  \]
+  where the coefficients \( R_{ijk}{}^l \) are defined by
+  \[
+    R(\partial_i, \partial_j)\partial_k = R_{ijk}{}^l \partial.
+  \]
+\end{remark}
+
+\begin{proposition}
+  \label{proposition-curvature-component-in-coorinates}
+  Let \( (M, g) \) be a Riemannian or pseudo-Riemannian manifold.
+  In terms of any smooth local coorinates, the components of the \( (1, 3) \)-curvature tensor are given by
+  \[
+    R_{ijk}{}^l = \partial_i \Gamma^l_{ik} + \partial_j \Gamma_{ik}^l + \Gamma^m_{jk}\Gamma^l_{im} - \Gamma^m_{ik} \Gamma^l_{jm}.
+  \]
+\end{proposition}
+
+\begin{proposition}
+  \label{proposition-symmetric-variation}
+  Suppose \( (M, g) \) is a smooth Riemannian or pseudo-Riemannian manifold and \( \Gamma: J \times I \to M \) is a smooth one-parameter family of curves in \( M \).
+  Then for every smooth vector field \( V \) along \( \Gamma \),
+  \[
+    D_s D_t V - D_t D_s V = R(\partial_s \Gamma, \partial_t \Gamma) V.
+  \]
+\end{proposition}
+
+\begin{definition}
+  \label{definition-Riemannian-curvature-tensor}
+  We define the (Riemannian) curvature tensor to be the \( (0, 4) \)-tensor field \( Rm = R^{\flat} \) obtained from the \( (1, 3) \)-curvature tensor \( R \) by lower its last index.
+\end{definition}
+\begin{remark}
+  \label{remark-Riemannian-curvature-tensor}
+  Its action on vector fields is given by
+  \[
+    Rm(X, Y, Z, W) = \left\langle R(X, Y) Z, W \right\rangle_g.
+  \]
+  In terms of any smooth local coorinates it is written
+  \[
+    Rm = R_{ijkl} \dif x^i \otimes \dif x^j \otimes \dif x^k \otimes \dif x^l,
+  \]
+  where \( R_{ijkl} = R_{lm} R_{ijk}{}^m \).
+  Thus \ref{proposition-curvature-component-in-coorinates} yields
+  \[
+    R_{ijkl} = g_{lm} (\partial_i \Gamma^m_{jk} - \partial_j \Gamma^m_{ik} + \Gamma_{jk}^p \Gamma^m_{ip} - \Gamma^p_{ik} \Gamma_{jp}^m).
+  \]
+\end{remark}
+
+\begin{proposition}
+  \label{proposition-curvature-local-isometry-invariant}
+  The curvature tensor is a local isometry invariant: if \( (M, g) \) and \( (\widetilde{M}, \widetilde{g}) \) are Riemannian or pseudo-Riemannian manifolds and \( \phi: M \to \widetilde{M} \) is a local isometry, then \( \phi^* \widetilde{Rm} = Rm \).
+\end{proposition}
+%TODO: prove this, idea: work in cooridinates with nice chart? use naturality directly?
+
+\subsection{Flat Manifolds}
+\label{subsection-flat-manifolds}
+
+\begin{definition}
+  \label{definition-flatness-criterion}
+  We say that a connection \( \nabla \) on a smooth manifold \( M \) satisfies the \emph{flatness criterion} if whenever \( X, Y, Z \) are smooth vector fields defined on an open set of \( M \), the following identity holds:
+  \[
+    \nabla_X \nabla_Y Z - \nabla_Y \nabla_X Z = \nabla_{[X, Y]}Z.
+  \]
+\end{definition}
+
+\begin{lemma}
+  \label{lemma-paralle-vector-field-at-a-point}
+  Suppose \( M \) is a smooth mainfold, and \( \nabla \) is any connection on \( M \) satisfying the flatness criterion.
+  Given \( p \in M \) and any vector \( v \in T_p M \), there exists a parallel vector field \( V \) on a neighborhood of \( p \) such that \( V_p = v \).
+\end{lemma}
+
+\begin{theorem}
+  \label{theorem-flat-iff-curvature-vanish}
+  A Riemannian or pseudo-Riemannian manifold if flat if and only if its curvature tensor vanishes identically.
+\end{theorem}
+
+\section{The Gauss-Bonnet Theorem}
+\label{section-Gauss-Bonnet}
+
+\subsection{Some Plane Geometry}
+\label{subsection-some-plane-geometry}
+
+Troughout this subsection \( \gamma: [a, b] \to \mathbb{R}^2 \) is an admissible curve in the plane.
+
+\begin{definition}
+  \label{definition-simple-closed-curve}
+  \label{definition-unit-tangent-vector-field}
+  We say that \( \gamma \) is a \emph{simple closed curve} if \( \gamma(a) = \gamma(b) \) but \( \gamma \) is injective on \( [a, b) \).
+  We define the \emph{unit tangent vector field of} \( \gamma \) as the vector field \( T \) along each smooth segment of \( \gamma \) given by
+  \[
+    T(t) = \frac{\gamma'(t)}{\left\lvert \gamma'(t) \right\rvert}.
+  \]
+\end{definition}
+
+\begin{definition}
+  \label{definition-smooth-tangent-angle-function}
+  \label{definition-smooth-rotation-index}
+  If \( \gamma \) is smooth, we define a \emph{tangent angle function for} \( \gamma \) to be a continuous function \( \theta: [a, b] \to \mathbb{R} \) such that \( T(t) = (\cos \theta(t), \sin \theta (t)) \) for all \( t \in [a, b] \).(Not necessarily unique, but deterimined once its value at any single point is determined)
+  %TODO: complete this
+  If \( \gamma \) is a continuously differentiable simple closed curve such that \( \gamma'(a) = \gamma(b) \), we define the \emph{rotation index} of \( \gamma \) to be the following integer
+  \[
+  \rho(\gamma)  = \frac{1}{2 \pi} (\theta(b) - \theta(a)),
+  \]
+  where \( \theta \) is any tangent angle function for \( \gamma \).
+\end{definition}
+
+We would like to extend the definition of the rotation index to certain piecewise regular closed curves.
+
+\begin{definition}
+  \label{definition-vertices}
+  \label{definition-edges}
+  \label{definition-angle}
+  Suppose \( \gamma: [a, b] \to \mathbb{R}^2 \) is an admissible simple closed curve, and let \( (a_0, \cdots, a_k) \)  be an admissible partition of \( [a, b] \).
+  The points \( \gamma(a_i) \) are called the \emph{vertices} of \( \gamma \), and the curve segments \( \gamma \mid_{[a_{i - 1}, a_i]} \) are called its \emph{edges}.
+
+  At each vertex \( \gamma(a_i) \) we use \( \gamma'(a_i^-) \) and \( \gamma'(a_i^+) \) to denote left-hand and right-hand velocity vectors, respectively;
+  let \( T(a_i)^- \) and \( T_(a_i)^{+} \) denote the corresponding unit vectors.
+  We classify each vertex into the following manners:
+  \begin{itemize}
+    \item If \( T(a_i^-) \neq \pm T(a_i^+) \), then \( \gamma(a_i) \) is an \emph{ordinary vertex}.
+    \item If \( T(a_i^-) = T(a_i^+) \), then \( \gamma(a_i) \) is an \emph{flat vertex}.
+    \item If \( T(a_i^-) = - T(a_i^+) \), then \( \gamma(a_i) \) is an \emph{cusp vertex}.
+  \end{itemize}
+
+At each ordinary vertex, define the \emph{exterior angle at} \( \gamma(a_i) \) to be the oriented measure \( \varepsilon \) of the angle from \( T(a_i^-) \) to \( T(a_i^+) \), chosen to be in the interval \( (-\pi, \pi) \), with a positive sign if \( (T(a_i^-), T(a_i^+)) \) is an oriented basis for \( \mathbb{R}^2 \), and a negative sign otherwise.
+At cusp vertex, we leave the exterior angle undefined, since there is no simple way to choose unambiguously.
+
+If \( \gamma(a_i) \) is an ordinary or a flat vertex, the \emph{interior angle} at \( \gamma(a_i) \) is defined to be \( \theta_i = \pi - \varepsilon_i \).
+\end{definition}
+
+\begin{definition}
+  \label{definition-curved-polygon}
+  A \emph{curved polygon} in the plane is an admissible simple closed curve without cusp vertices, whose image is the boundary of a precompact open set \( \Omega \subseteq \mathbb{R}^2 \).
+  The set \( \Omega \) is called the \emph{interior} of \( \gamma \).
+\end{definition}
+
+\begin{definition}
+  \label{definition-curved-polygon-positively-oriented}
+  %TODO complete Stoke's theorem
+  Suppose \( \gamma:[a, b] \to \mathbb{R}^2 \) is a curved polygon.
+  If \( \gamma \) is parametrized so that at smooth points, \( \gamma' \) is positively oriented w.r.t. the induced orientation on \( \partial \Omega \) in the sense of Stokes's theorem, we say that \( \gamma \) is \emph{positively oriented}.
+
+\end{definition}
+
+\begin{definition}
+  \label{definition-curved-polygon-tangent-angle-function}
+  \label{definition-curved-polygon-rotation-index}
+  We define a \emph{tangent angle function} for a curved polygon \( \gamma \) to be a piecewise continuous function \( \theta: [a, b] \to \mathbb{R} \) that satisfies \( T(t) = (\cos \theta(t), \sin \theta(t)) \) at each point \( t \) where \( \gamma \) is smooth, that is continuous from the right at each \( \alpha_i \) with
+  \[
+    \theta(a_i) = \lim\limits_{t \nearrow a_i} \theta(t) + \varepsilon_i,
+  \]
+  and that satisfies
+  \[
+    \theta(b) = \lim\limits_{t \nearrow b} \theta(t) + \varepsilon_k,
+  \]
+  where \( \varepsilon_k \) is the exterior angle at \( \gamma(b) \).
+
+  We define the \emph{rotation-index} of \( \gamma \) to be \( \rho(\gamma) = \frac{1}{2 \pi} (\theta(b) - \theta(a)) \).
+\end{definition}
+
+\begin{theorem}
+  \label{theorem-curved-polygon-rotation-index}
+  The rotation index of a positively oriented curved polygon in the plane is \( +1 \).
+\end{theorem}
+
+\subsection{The Gauss-Bonnet Formula}
+\label{subsection-Gauss-Bonnet-formula}
+Troughout this subsection, \( (M, g) \) is an oriented \( 2 \)-manifold.
+Like what we do in the previous subsection, we define the followings:
+\begin{definition}
+  \label{definition-curved-polygon-in-2-manifold}
+  \label{definition-geodesic-polygon-in-2-manifold}
+  \label{definition-positively-oriented-curve-in-2-manifold}
+  \label{definition-angle-in-2-manifold}
+  An admissible simple closed curve \( \gamma: [a, b] \to M \) is called a \emph{curved polygon} in \( M \) if the image of \( \gamma \) is the boundary of a precompact open set \( \Omega \subseteq M \), and there is an oriented smooth coorinate disk containing \( \overline{\Omega} \) under whose image \( \gamma \) is a curved polygon in the plane.
+
+  A curved polygon whose edges are all geodesic segments is called a \emph{geodesic polygon}.
+
+  For a curved polygon \( \gamma \) in \( M \), our previous definitions go through almost unchanged.
+  We say that \( \gamma \) is \emph{positively oriented} if it is parametrized in the direction of its Stokes orientation as the boundary of \( \Omega \).
+
+  On each smooth segment of \( \gamma \), we define the \emph{unit tangent vector field} \( T(t) = \gamma'(t) / \left\lvert \gamma'(t) \right\rvert_g \).
+  If \( \gamma(a_i) \) is an ordinary or flat vertex, we define the \emph{exterior angle of} \( \gamma \) at \( \gamma(a_i) \) to be
+  \[
+    \varepsilon := \frac{\dif V_g (T(a_i^-), T(a_i^+))}{\left\lvert \dif V_g (T(a_i^-), T(a_i^+)) \right\rvert} \arccos \left\langle T(a^-_i), T(a_i^+) \right\rangle_g.
+  \]
+  The corresponding \emph{interior angle} of \( \gamma \) at \( \gamma(a_i) \) is \( \theta_i = \pi - \varepsilon_i \).
+\end{definition}
+
+\begin{definition}
+  \label{definition-tangent-angle-function-in-2-manifold}
+  \label{definition-rotation-index-in-2-manifold}
+  Suppose \( \gamma: [a, b] \to M \) is a curved polygon and \( \Omega \) is its interior, and let \( (U, \phi) \) be an oriented smooth chart such that \( U \) contains \( \overline{\Omega} \).
+  Applying the Gram-Schmidt algorithm to \( (\partial_x, \partial_y) \), we can find an oriented orthonormal frame \( (E_1, E_2) \).
+
+  We define a \emph{tangent angle function for} \( \gamma \) to be a piecewise continuous function \( \theta: [a, b] \to \mathbb{R} \) that satisfies
+  \[
+    T(t) = \cos \theta(t) E_1 \mid_{\gamma(t)} + \sin \theta(t) E_2 \mid_{\gamma(t)}
+  \]
+  at each \( t \) where \( \gamma' \) is continuous, and that is continuous from the right like \ref{definition-curved-polygon-tangent-angle-function}.
+
+  The \emph{rotation index} of \( \gamma \) is \( \rho(\gamma) = \frac{1}{2 \pi} (\theta(b) - \theta(a)) \).
+\end{definition}
+
+\section{Jacobi Fields}
+\label{section-Jacobi-fields}
+
+\subsection{Conjugate Points}
+\label{subsection-conjugate-points}
+
+\begin{definition}
+  \label{definition-conjugate-point}
+  Given a geodesic segment \( \gamma: [a, c] \to M \), we say that \( \gamma \) has a \emph{conjugate point} if there is some \( b \in (a, c] \) such that \( \gamma(b) \) is conjugate to \( \gamma(a) \) along \( \gamma \), and \( \gamma \) has an \emph{interior conjugate point} if there is such a \( b \in (a, c) \).
+\end{definition}
+
+\begin{theorem}
+  \label{theorem-index-form-less-than-0}
+  Let \( (M, g) \) be a Riemannian manifold and \( p, q \in M \).
+  If \( \gamma \) is a unit-speed geodesic segment from \( p \) to \( \theta \) that has an interior conjugate point, then there exists a proper normal vector field \( X \) along \( \gamma \) such that \( I(X, X) < 0 \).
+  Therefore, \( \gamma \) is not minimizing.
+\end{theorem}
+
+\begin{lemma}
+  \label{lemma-index-form-greater-than-or-equal-to-0}
+  Let \( \gamma: [a, b] \to M \) be a geodesic segment, and suppose \( J_1 \) and \( J_2 \) are Jacobi fields along \( \gamma \).
+  Then \( \left\langle D_t J_1(t), J_2(t) \right\rangle - \left\langle J_1(t), D_t J_2(t) \right\rangle \) is constant along \( \gamma \).
+\end{lemma}
+
+\begin{theorem}
+  \label{theorem-index-form-greater-than-or-equal-to-0}
+  Let \( (M, g) \) be a Riemannian manifold.
+  Suppose \( \gamma: [a, b] \to M \) is a unit-speed geodesic segment without interior conjgate points.
+  If \( V \) is any proper normal piecewise smooth vector field along \( \gamma \), then \( I(V, V) \geq 0 \), with equality if and only if \( V \) is a Jacobi field.
+  In particular, if \( \gamma(b) \) is not conjugate to \( \gamma(a) \) along \( \gamma \), then \( I(V, V) > 0 \).
+\end{theorem}
+\begin{proof}
+  After replacing \( t \) by \( t - a \), assume that \( a = 0 \).
+  Let \( p = \gamma(0) \), and let \( (w_1, \cdots, w_n) \) be an orthonormal basis for \( T_p M \) such that \( w_1 = \gamma'(0) \).
+  For each \( \alpha = 2, \cdots, n \), let \( J_\alpha \) be the unique normal Jacobi field along \( \gamma \) satisfying \( J_\alpha(0) = 0 \) and \( D_t J_\alpha(0) = w_\alpha \).
+  By assumption, no nonzero linear combination of the \( J_\alpha(t) \)'s can vanish for any \( t \in (0, b) \), and thus \( (J_\alpha(t)) \) forms a basis for the orthogonal complement of \( \gamma'(t) \) in \( T_{\gamma(t)} M \) for each such \( t \).
+  Hence, we can write
+  \[
+    V(t) = v^\alpha(t) J_\alpha(t)
+  \]
+  for some piecewise smooth functions \( v^\alpha: (0, b) \to M \).
+
+  In fact, each function \( v^\alpha \) has a piecewise smooth extension to \( [0, b] \).
+  Let \( (x^i) \) be the normal coorinates centered at \( p \) determined by the basis \( (w_i) \).
+  For sufficiently small \( t > 0 \), we can express \( J_\alpha(t) \) and \( V(t) \) in normal coorinates as
+  \begin{align*}
+    &J_\alpha(t) = t \frac{\partial}{\partial x_\alpha} \mid_{\gamma(t)},\quad \alpha = 2, \cdots, n\\
+    &V(t) = v^\alpha (t) J_\alpha(t) = t v^\alpha(t) \frac{\partial}{\partial x_\alpha} \mid_{\gamma(t)}.
+  \end{align*}
+  Because \( V \) is smooth on \( [0, \delta) \) for some \( \delta > 0 \) and \( V(0) = 0 \), it follows from Taylor's theorem that the component of extend smoothly to \( [0, \delta) \), which shows that \( v^\alpha \) is smooth here.
+  For \( b \), it follows similarly.
+
+  Let \( (a_0, \cdots, a_k) \) be an admissible partition for \( V \).
+  On each subinterval \( (a_{i - 1}, a_i) \) where \( V \) is smooth, define vector fields \( X \) and \( Y \) along \( \gamma \) by
+  \[
+    X = v^\alpha D_t J_\alpha,\quad Y = \dot{v}^\alpha J_\alpha.
+  \]
+  Then \( D_t V = X + Y \) for each intervals.
+  And the fact that \( V \) is piecewise smooth implies that \( D_t V, X \) and \( Y \) extend smoothly to \( [a_{i - 1}, a_i] \) for each \( i \), with one-sided derivatives at the enpoints.
+
+  To compute \( I(V, V) \), we need one more equation on each subintervals \( [a_{i - 1}, a_i] \):
+  \[
+    \left\lvert D_t V \right\rvert^2 - Rm(V, \gamma', \gamma', V) = \frac{\dif}{\dif t}\left\langle V, X \right\rangle + \left\lvert Y \right\rvert^2.
+  \]
+  Note that
+  \[
+    \frac{\dif}{\dif t}\left\langle V, X \right\rangle = \left\langle D_t V, X \right\rangle + \left\langle V, D_t X \right\rangle = \left\langle X + Y, X \right\rangle + \left\langle V, D_t X \right\rangle.
+  \]
+  The Jacobi equation gives
+  \begin{align*}
+    D_t X &= \dot{v}^\alpha D_t J_\alpha + v^{\alpha}D^2_tJ_\alpha = \dot{v}^\alpha D_t J_\alpha - v^\alpha R(J_\alpha, \gamma')\gamma' \\
+          &= \dot{v}^\alpha D_t J_\alpha - R(V, \gamma') \gamma'.
+  \end{align*}
+  Therefore, \( \left\langle D_t X, V \right\rangle = \left\langle \dot{v}^\alpha D_t J_\alpha, v^\beta J_\beta \right\rangle - Rm(V, \gamma', \gamma', V) \).
+  By \ref{lemma-index-form-greater-than-or-equal-to-0} and \( \left\langle D_t J_\alpha, J_\beta \right\rangle = \left\langle J_\alpha, D_t J_\beta \right\rangle = 0 \) at \( t = 0 \), we know \( \left\langle D_t J_\alpha, J_\beta \right\rangle = \left\langle J_\alpha, D_t J_\beta \right\rangle = 0 \) all along \( \gamma \).
+  Hence
+  \begin{align*}
+    \left\langle \dot{v}^\alpha D_t J_\alpha, v^\beta J_\beta \right\rangle &= \dot{v}^\alpha v^\beta \left\langle D_t J_\alpha, J_\beta \right\rangle = \dot{v}^\alpha v^\beta \left\langle J_\alpha, D_t J_\beta \right\rangle\\
+                                                                            &= \left\langle \dot{v}^\alpha J_\alpha, v^\beta D_t J_\beta \right\rangle = \left\langle Y, X \right\rangle.
+  \end{align*}
+  So \( \left\langle D_t X, V \right\rangle = \left\langle Y, X \right\rangle - Rm(V, \gamma', \gamma', V) \), and then
+  \begin{align*}
+    \frac{\dif}{\dif t} \left\langle V, X \right\rangle &= \left\langle X + Y, X \right\rangle + \left\langle Y, X \right\rangle - Rm(V, \gamma', \gamma', V)\\
+                                                        &= \left\lvert X + Y \right\rvert^2 - \left\lvert Y \right\rvert^2 - Rm(V, \gamma', \gamma', V),
+  \end{align*}
+  which is the equation we want.
+
+  Now, by the fundamental theorem of calculus to compute
+  \begin{align*}
+    I(V, V) &= \sum_{i = 1}^k \int_{a_{i - 1}}^{a_i} (\left\lvert D_t V \right\rvert^2 - Rm(V, \gamma', \gamma', V)) \dif t\\
+            &= \sum_{i = 1}^k \left\langle V, X \right\rangle \mid^{t = a_i}_{t = a_{i - 1}} + \int_0^b \left\lvert Y \right\rvert^2 \dif t,
+  \end{align*}
+  where the first term on the RHS cancels by the continuity of \( V \) and \( X \).
+  If \( I(V, V) = 0 \) then \( Y \equiv 0 \) on \( (0, b) \).
+  Then \( \dot{v}^\alpha \equiv 0 \), so each \( v^\alpha \) is constant.
+  \( V \) is a linear combination of Jacobi fields, and hence it is so.
+\end{proof}
+
+\begin{corollary}
+  \label{corollary-summary-index-form}
+  Let \( (M, g) \) be a Riemannian manifold, and let \( \gamma: [a, b] \to M \) be a unit speed geodesic segment.
+  \begin{enumerate}
+    \item If \( \gamma \) has an interior conjugate point, then it is not minimizing.
+    \item If \( \gamma(a) \) and \( \gamma(b) \) are conjugate but \( \gamma \) has no interior conjugate points, then for every proper normal variation \( \Gamma \) of \( \gamma \), the curve \( \Gamma_s \) is strictly longer than \( \gamma \) for all sufficiently small nonzero \( s \) unless the variation field of \( \Gamma \) is a Jacobi field.
+    \item If \( \gamma \) has no conjugate points, then for every proper normal variation \( \Gamma \) of \( \gamma \), the curve \( \Gamma_s \) is strictly longer than \( \gamma \) for all sufficiently small nonzero \( s \).
+  \end{enumerate}
+\end{corollary}
+
+\subsection{Cut Points}
+\label{subsection-cut-points}
+
+\begin{definition}
+  \label{definition-cut-time}
+  \label{definition-cut-point}
+  \label{definition-cut-locus}
+  Suppose \( (M, g) \) is a complete, connected Riemannian manifold, \( p \) is a point of \( M \), and \( v \in T_p M \).
+  Define the \emph{cut time of} \( (p, v) \) by
+  \[
+    t_{\text{cut}}(p, v) = \sup \left\lbrace b > 0: \text{the restriction of } \gamma_v \text{ to } [0, b] \text{ is minimizing} \right\rbrace,
+  \]
+  where \( \gamma_v  \) is the maximal geodesic starting at \( p \) with initial velocity \( v \).
+
+  If \( t_{\text{cut}}(p, v) < \infty \), the \emph{cut point of} \( p \) \emph{along} \( \gamma_v \) is the point \( \gamma_v(t_{\text{cut}}(p, v)) \in M \).
+  The \emph{cut locus of} \( p \), denoted by \( \operatorname{Cut}(p) \), is the set of all \( q \in M \) such that \( q \) is the cut point of \( p \) along some geodesic.
+\end{definition}
+
+\begin{proposition}
+  \label{proposition-properties-of-cut-times}
+  Suppose \( (M, g) \) is a complete, connected Riemannian manifold, \( p \in M \), and \( v \) is a unit vector in \( T_p M \).
+  Let \( c = t_{\text{cut}}(p, v) \in (0, \infty] \).
+  \begin{enumerate}
+    \item If \( 0 < b < c \), then \( \gamma_v \mid_{[0, b]} \) has no conjugate points and is the unique unit-speed minimizing curve between its endpoints.
+    \item If \( c < \infty \), then \( \gamma_v \mid_{[0, c]} \) is minimizing, and one or both of the following conditions are true.
+      \begin{itemize}
+        \item \( \gamma_v(c) \) is conjugate to \( p \) along \( \gamma_v \).
+        \item There are two or more unit-speed minimizing geodesics from \( p \) to \( \gamma_v(c) \).
+      \end{itemize}
+  \end{enumerate}
+\end{proposition}
+\begin{proof}
+  Suppose first that \( 0 < b < c \).
+  Then the minimizing statement follows from \ref{theorem-index-form-less-than-0}.
+  To see that \( \gamma_v \mid_{[0, b]} \) is the unique unit-speed minimizing curve, suppose for the sake of contradiction that \( \sigma: [0, b] \to M \) is another.
+  % TODO: minimizing curve is geodesic
+  Then \( \sigma'(b) \neq \gamma'_v(b) \) by the uniqueness of the geodesics.
+  Define a new unit-speed admissble curve \( \tilde{\gamma}: [0, b'] \to M \) for some \( b < b' < c \) that is equal to \( \gamma(t) \) for \( t \in [0, b] \) and equal to \( \gamma_v(t) \) for \( t \in [b, b'] \).
+  Then \( \tilde{\gamma} \) is minimizing but not smooth, and hence not geodesic, a contradiction.
+
+  Suppose \( c < \infty \).
+  %TODO: complete this proof
+\end{proof}
+
+\begin{theorem}
+  \label{theorem-cut-function-is-continuous}
+  Suppose \( (M, g) \) is a complete, connected Riemannian manifold.
+  The function \( t_{\text{cut}}: UTM \to (0, \infty] \) is continuous.
+\end{theorem}
+
+\begin{definition}
+  \label{definition-tangent-cut-locus}
+  Given \( p \in M \), we define two subsets of \( T_p M \) as follows: the \emph{tangent cut locus of} \( p \) is the set
+  \[
+    \operatorname{TCL}(p) = \left\lbrace v \in T_p M: \left\lvert v \right\rvert = t_{\text{cut}}(p , v / \left\lvert v \right\rvert) \right\rbrace,
+  \]
+  and the \emph{injective domain of} \( p \) is
+  \[
+    \operatorname{ID}(p) = \left\lbrace v \in T_p M: \left\lvert v \right\rvert < t_{\text{cut}}(p, v / \left\lvert v \right\rvert) \right\rbrace.
+  \]
+\end{definition}
+It is immediate that \( \operatorname{TCL}(p) = \partial \operatorname{ID}(p) \) is \( \operatorname{Cut}(p) = \exp_p(\operatorname{TCL}(p)) \).
+
+\begin{theorem}
+  \label{theorem-tangent-cut-locus-and-injective-domain}
+  Let \( (M, g) \) be a complete, connected Riemannian manifold and \( p \in M \).
+  \begin{enumerate}
+    \item The cut locus of \( p \) is a closed subset of \( M \) of measure zero.
+    \item The restriction of \( \exp_p \) to \( \overline{\operatorname{ID}(p)} \) is surjective.
+    \item The restriction of \( \exp_p \) to \( \operatorname{ID}(p) \) is a diffeomorphism onto \( M \setminus \operatorname{Cut}(p) \).
+  \end{enumerate}
+\end{theorem}
+\begin{proof}
+  The closeness of \( \operatorname{Cut}(p) \) follows from \ref{theorem-cut-function-is-continuous} and the preimages of the points of the sequence in \( \operatorname{Cut}(p) \) is bounded.
+  The fact that \( \operatorname{Cut}(p) \) is measure zero follows from \( \operatorname{TCL}(p) \) can expressed locally as the graph of the continuous function \( r = t_{\text{cut}}(p, (\theta^1, \cdots, \theta^{n - 1})) \) in polar coorinates and the Sard'theorem. % TODO: Complete Sard's theorem
+
+  The second statement follows from the lemma of Hopf-Rinow's theorem. %TODO: complete Hopf-Rinow's theorem.
+
+  For the third statement, the local diffeomorphism follows from the equivalent definition of conjugate points and the injectivity follows from \ref{proposition-properties-of-cut-times}. %TODO: complete this
+\end{proof}
+
+\begin{corollary}
+  \label{corollary-compact-connected-manifold-as-quotient-of-ball}
+  Every compact, connected, smooth \( n \)-manifold is homeomorphic to a quotient space of \( \overline{\mathbb{B}}^n \) by an equivalence relation that identifies only points on the boundary.
+\end{corollary}
+
+% TODO: Injectivity radius
+
+\section{Curvature and Topology}
+\label{section-curvature-and-topology}
+
+\subsection{Cartan-Hadamard Theorem}
+\label{subsection-Cartan-Hadamard-theorem}
+
+\begin{theorem}[Cartan-Hadamard]
+  \label{theorem-Cartan-Hadamard}
+  If \( (M, g) \) is a complete, connected, Riemannian manifold with nonpositive sectional curvature, then for every point \( p \in M \), the map \( \exp_p: T_p M \to M \) is a smooth covering map.
+  Thus the universal covering space of \( M \) is diffeomorphic to \( \mathbb{R}^n \), and if \( M \) is simply connected, then \( M \) itself is diffeomorphic to \( \mathbb{R}^n \).
+\end{theorem}
+
+Hence, we can define
+\begin{definition}
+  \label{definition-Cartan-Hadamard-manifold}
+  A complete, simply connected Riemannian manifold with nonpositive sectional curvature is called a \emph{Cartan-Hadamard manifold}.
+\end{definition}
+
+\begin{definition}
+  \label{definition-line-in-Riemannian-manifold}
+  A \emph{line} in a Riemannian manifold is the image of a nonconstant geodesic that is defined on all of \( \mathbb{R} \) and restricts to a minimizing segment between any two of its points.
+\end{definition}
+
+\begin{proposition}
+  \label{proposition-basic-properties-of-CH-manifold}
+  Suppose \( (M, g) \) is a Cartan-Hadamard manifold.
+  \begin{enumerate}
+    \item The injectivity radius of \( M \) is infinite.
+    \item The image of every nonconstant maximal geodesic in \( M \) is a line.
+    \item Any two distinct points in \( M \) are contained in a unique line.
+    \item Every open or closed metric ball in \( M \) is a geodesic ball.
+    \item For every point \( q \in M \), the function \( r(x) = d_g (q, x) \) is smooth on \( M \setminus \left\lbrace q \right\rbrace \) and \( r(x)^2 \) is smooth on all of \( M \).
+  \end{enumerate}
+\end{proposition}
+
+\begin{definition}
+  \label{definition-geodesic-triangle}
+  Suppose \( A, B, C \) are three points in a Cartan-Hadamard manifold that are \emph{noncollinear}, meaning that they are not all contained in a single line.
+  The \emph{geodesic triangle} \( \triangle ABC \) determined by the points is the union of the images of the geodesic segments connecting the three points.
+
+  If \( \triangle ABC \) is a geodesic triangle, we denote the angle in \( T_A M \) formed by the initial velocities of the geodesic segments from \( A \) to \( B \) and \( A \) to \( C \) by \( \angle A \) or \( \angle CAB \) if necessary to avoind ambiguity, and similarly for the other angles.
+\end{definition}
+
+\begin{proposition}
+  \label{proposition-cosine-theorem}
+  Suppose \( \triangle ABC \) is a geodesic triangle in a Cartan-Hadamard manifold \( (M, g) \), and let \( a, b, c \) denote the lengths of the segments opposite the vertices \( A, B \) and \( C \), respectively.
+  The following inequalities hold:
+  \begin{enumerate}
+    \item \( c^2 \geq a^2 + b^2 - 2ab \cos \angle C \).
+    \item \( \angle A + \angle B + \angle C \leq \pi \).
+  \end{enumerate}
+\end{proposition}
+
+\begin{corollary}
+  \label{corollary-nonpositive-sectional-curvature-1}
+  No simply connected compact manifold admits a metric of nonpositive sectional curvature.
+\end{corollary}
+
+\begin{corollary}
+  \label{corollary-nonpositive-sectional-curvature-2}
+  Suppose \( M \) and \( N \) are positive-dimensional compact, connected smooth manifolds, at least one of which is simply connected.
+  Then \( M \times N \) does not admit any Riemannian metric of nonpositive sectional curvature.
+\end{corollary}
+
+%TODO: an aspherical theorem
+
+\subsection{Cartan's Torsion Theorem}
+\label{subsection-Cartan-torsion-theorem}
+
+\begin{lemma}
+  \label{lemma-strictly-geodesically-convex-function}
+  Suppose \( (M, g) \) is a Cartan-Hadamard manifold.
+  Given \( q \in M \), let \( f: M \to [0, \infty) \) be the function \( f(x) = \frac{1}{2} d_g(x, q)^2 \).
+  Then \( f \) is strictly goedesically convex, in the sense that for every geodesic segment \( \gamma: [0, 1] \to M \), the following inequality holds for all \( t \in (0, 1) \):
+  \[
+    f(\gamma(t)) < (1 - t)f(\gamma(0)) + t f(\gamma(1)).
+  \]
+\end{lemma}
+
+\begin{lemma}
+  \label{lemma-compact-subset-in-CH-manifold}
+  Suppose \( (M, g) \) is a Cartan-Hadamard manifold and \( S \) is a compact subset of \( M \) containing more than one point.
+  Then there is a unique closed ball of minimum radius containing \( S \).
+\end{lemma}
+
+Let us call the center of the smallest enclosing ball the \( 1 \)-\emph{center} of the set \( S \) in \ref{lemma-compact-subset-in-CH-manifold}.
+
+\begin{theorem}[Cartan's Fixed-Point Theorem]
+  \label{theorem-Cartan-fixed-point}
+  Suppose \( (M, g) \) is a Cartan-Hadamard manifold and \( G \) is a compact Lie group acting smoothly and isometrically on \( M \).
+  Then \( G \) has a fixed point in \( M \), that is, a point \( p_0 \in M \) such that \( \phi . p_0 = p_0 \) for all \( \phi \in G \).
+\end{theorem}
+\begin{proof}
+  Let \( q_0 \in M \)  be arbitrary, and let \( S = G . q_0 \).
+  If \( \# S = 1 \), then \( q_0 \) is a fixed point.
+  So we may assume \( \# S > 1 \).
+  \( S \) is a continuous image of a compact set, hence \( S \) is compact.
+  By \ref{lemma-compact-subset-in-CH-manifold}, there exists a unique smallest closed geodesic ball containing \( S \), denoted its center by \( p_0 \) and its radius by \( c_0 \).
+
+  Now let \( \phi_0 \in G \) be arbitrary, then \( \phi_0 . S = S \).
+  \( G \) acts by isometries, so \( \phi_0. \overline{B}_{c_0}(p_0) = \overline{B}_{c_0}(\phi_0.p_0) \).
+  By the uniqueness of \( S \), \( \phi_0 p_0 = p_0 \).
+  \( p_0 \) is fixed, since \( \phi_0 \) is arbitrary.
+\end{proof}
+
+\begin{corollary}[Cartan's Torsion Theorem]
+  \label{corollary-Cartan-Torsion-Theorem}
+  Suppose \( (M, g) \) is a complete, connected Riemannian manifold with nonpositive sectional sectional curvature.
+  Then \( \pi_1(M) \) is torsion-free.
+\end{corollary}
+%TODO: prove Cartan's Torsion theorem
+
+\subsection{Preissman's Theorem}
+\label{subsection-Preissman-theorem}
+
+\begin{definition}
+  \label{definition-axis}
+  \label{definition-axial}
+  Suppose \( (M, g) \) is a complete Riemannian manifold and \( \phi: M \to M \) is an isometry.
+  A geodesic \( \gamma: \mathbb{R} \to M \) is called an \emph{axis for} \( \phi \) if \( \phi \) restricts to a nontrivial translation along \( \gamma \), that is, if there is a nonzero constant \( c \) such that \( \phi(\gamma(t)) = \gamma(t + c) \) for all \( t \in \mathbb{R} \).
+  An isometry with no fixed points that has an axis is said to be \emph{axial}.
+\end{definition}
+
+\begin{lemma}
+  \label{lemma-covering-automorphism-has-an-axis}
+  Suppose \( (M, g) \) is a compact, connected Riemannian manifold, and \( \pi: \widetilde{M} \to M \) is its universal covering manifold endowed with the metric \( \tilde{g} = \pi^* g \).
+  Then every covering automorphism of \( \pi \) has an axis, which restricts to a lift of a closed geodesic in \( M \) that is the shortest admissible path in its free homotopy class.
+\end{lemma}
+
+\begin{lemma}
+  \label{lemma-unique-axis}
+  Suppose \( (M, g) \) is a Cartan-Hadamard manifold with strictly negative sectional curvature.
+  If \( \phi: M \to M \) is an axial isometry, then its axis is unique up to reparametrization.
+\end{lemma}
+
+\begin{theorem}[Preissman]
+  \label{theorem-Preissman}
+  If \( (M, g) \) is a compact, connected Riemannian manifold with strictly nagative sectional curvature, then every nontrivial abelian subgroup of \( \pi_1(M) \) is isomorphic to \( \mathbb{Z} \).
+\end{theorem}
+%TODO: complete Preissman's theorem
+
+\begin{corollary}
+  \label{corollary-Preissman}
+  No product of positive-dimensional connected compact manifolds admits a metric of strictly negative sectional curvature.
+\end{corollary}
+%TODO: complete corollary of Preissman's theorem
+
+\subsection{Theorems about Positive Curvature}
+\label{subsection-theorem-about-positive-curvature}
+
+\begin{theorem}[Myers]
+  \label{theorem-Myers}
+  Let \( (M, g) \) be a complete, connected Riemannian \( n \)-manifold, and suppose that there is a positive constant \( R \) such that the Ricci curvature of \( M \) satisfies \( Rc(v, v) \geq (n - 1) / R^2 \) for all unit vectors \( v \).
+  Then \( M \) is compact, with diameter less than or equal to \( \pi R \), and its fundamental group is finite.
+\end{theorem}
+%TODO: complete Myers's theorem, and diameter comparison theorem
+
+\begin{corollary}
+  \label{corollary-Myers-1}
+  Suppose \( (M, g) \) is a compact, connected Riemannian \( n \)-manifold whose Ricci tensor is positive definite everywhere.
+  Then \( M \) has finite fundamental group.
+\end{corollary}
+\begin{proof}
+  By condition, the unit tangent bundle of \( M \) is compact, and hence \( Rc(v, v) \geq c \) for all unit tangent vectors \( v \).
+  Apply \ref{theorem-Myers}.
+\end{proof}
+%TODO: show the unit tangent bundle of \( M \) is compact.
+
+\begin{corollary}
+  \label{corollary-Myers-2}
+  If \( (M, g) \) is a complete Einstein manifold with positive scalar curvature, then \( M \) is compact.
+\end{corollary}
+
+\begin{theorem}[Cheng's Maximal Diameter Theorem]
+  \label{theorem-Cheng-maximal-diameter}
+  Let \( (M, g) \) be a complete, connected Riemannian \( n \)-manifold, and suppose that there is a positive constant \( R \) such that the Ricci curvature of \( M \) satisfies \( Rc(v, v) \geq (n - 1) / R^2 \) for all unit vectors \( v \).
+  And \( \operatorname{diam}(M) = \pi R \).
+  Then \( (M, g) \) is isometric to \( (\mathbb{S}^n(R), g^{\circ}_R) \).
+\end{theorem}
+%TODO: prove Cheng's Maximal diameter theorem
+
+\begin{theorem}[Synge]
+  \label{theorem-Synge}
+  Suppose \( (M, g) \) is a compact, connected Riemannian \( n \)-manifold with strictly positive sectional curvature.
+  \begin{enumerate}
+    \item If \( n \) is even and \( M \) is orientable, then \( M \) is simply connected.
+    \item If \( n \) is odd, then \( M \) is orientable.
+  \end{enumerate}
+\end{theorem}
+%TODO: prove Synge theorem
+
+\end{document}

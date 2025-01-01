@@ -1,0 +1,111 @@
+\input{preamble}
+
+\begin{document}
+
+\title{Ordinary Differential Equations}
+\label{chapter-ode}
+
+
+\section{Existence and Uniqueness}
+\label{section-existence-and-uniqueness}
+
+\subsection{Basic Concepts}
+\label{subsection-basic-concepts}
+
+\paragraph{Phase Space}
+
+\begin{definition}
+  \label{definition-deterministic}
+  \label{definition-phase-space}
+  A process is called \emph{deterministic} if its entire future course and its entire past are uniquely determined by its state at the present time.
+  The set of all states of the process is called the \emph{phase space}.
+\end{definition}
+
+\begin{definition}
+  \label{definition-finite-dimensional}
+  A process is called \emph{finite-dimensional} if its phase space is finite-dimensional, i.e., if the number of parameters needed to describe its states is finite.
+\end{definition}
+
+\begin{definition}
+  \label{definition-differentiable}
+  A process is called \emph{differentiable} if its phase space has the structure of a differentiable manifold, and the change of state with time is described by differentiable functions.
+\end{definition}
+
+
+\subsection{First Order Equation}
+\label{subsection-existence-and-uniqueness-order-1}
+
+
+\begin{theorem}
+  \label{theorem-existence-and-uniqueness-order-1}
+  Given a differential equation
+  \begin{equation}
+    \dot{x} = f(t, x) \label{equation-single-variable-1-order-ode}
+  \end{equation}
+  Suppose \( f(t, x) \) is defined on an open set \( \Gamma \) in the plane \( P \) spanned by \( t \) and \( x \), and \( f \) and \( \frac{\partial f}{\partial x} \) is continuous over \( t \) and \( x \), then
+  \begin{enumerate}
+    \item For any \( (t_0, x_0) \in \Gamma \), there is a solution \( x = \varphi(x) \) of \eqref{equation-single-variable-1-order-ode} satisfying the initial condition
+      \[
+        \varphi(t_0) = x_0.
+      \]
+    \item If \( x = \psi(t) \) and \( x = \chi(t) \) are solutions of \eqref{equation-single-variable-1-order-ode} coincides at some \( t_0 \), i.e.
+      \[
+        \psi(t_0) = \chi(t_0),
+      \]
+      then the they are equal everywhere.
+  \end{enumerate}
+\end{theorem}
+
+
+\section{Constant Coefficients ODE}
+\label{section-constant-coefficients-ode}
+
+\subsection{Integrable Cases}
+\label{subsection-integrable-cases}
+
+Consider
+\begin{equation}
+  y' = f(x, y)\label{equation-integrable-case}
+\end{equation}
+The right-hand side \( f(x, y) \) of the equation is assumed to be defined as a real-valued function on a set \( D \) in the \( xy \)-plane.
+
+\begin{definition}
+  \label{definition-solution}
+  Let \( J \) be an interval.
+  A function: \( y(x): J \to \mathbb{R} \) is called a \emph{solution} to the differential equation \ref{equation-integrable-case} if \( y \) is differentiable in \( J \), the graph of \( y \) is a subset of \( D \), and \ref{equation-integrable-case} holds, i.e., if
+  \[
+    (x, y(x)) \in D \text{ and } y'(x) = f(x, y(x)) \text{ for all } x \in J.
+  \]
+\end{definition}
+
+\begin{definition}
+  \label{definition-line-element}
+  \label{definition-direction-field}
+  A numerical triple \( (x, y, p) \) is called a \emph{line element}: \( (x, y) \) gives a point in the plane, and the third component \( p \) gives the slope of a line through the point \( (x, y) \).
+  The collection of all line elements of the form \( (x, y, f(x, y)) \) is called a \emph{direction field}.
+\end{definition}
+
+\begin{definition}
+  \label{definition-initial-condition}
+  Let a function \( f(x, y) \), defined on a set \( D \) in the \( (x, y) \)-plane, and a fixed point \( (\xi, \eta) \in D \) be given.
+  A function \( y(x) \) is sought that is differentiable in an interval \( J \) with \( \xi \in J \) such that
+  \begin{align}
+    y'(x) = f(x, y(x)) \in J,\\
+    y(\xi) = \eta.
+  \end{align}
+\end{definition}
+
+\paragraph{Case \( y' = f(x) \)}
+
+Suppose the function \( f(x) \) is continuous in an interval \( J \) and the set \( D \) is a strip \( J \times \mathbb{R} \).
+One can prove that all of the solutions can be obtained by translating any particular solution in the direction indicated by the \( y \)-axis.
+
+\paragraph{Case \( y' = g(y) \)}
+
+A formal calculation gives
+\[
+  \frac{\dif y}{\dif x} = g(y) \iff \frac{\dif y}{g(y)} = \dif x
+\]
+and h
+
+\end{document}
